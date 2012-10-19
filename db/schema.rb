@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20120721114035) do
     t.text     "desc"
     t.datetime "due_date"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
+    t.datetime "created_at", :null => falseä-
     t.datetime "updated_at", :null => false
   end
 
