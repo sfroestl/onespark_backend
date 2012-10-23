@@ -1,6 +1,16 @@
 Onespark::Application.routes.draw do
 
+  ################# Routes for API JSON #################
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :users
+      resources :projects
+    end
+  end
 
+
+
+  ################# Routes for HTTP Requests #################
   resources :comments, only: [:edit, :update]
 
   resources :users
