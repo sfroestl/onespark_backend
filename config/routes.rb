@@ -1,18 +1,13 @@
 Onespark::Application.routes.draw do
 
 
-
-  # resources :tasks, controller: 'milestones', action: 'show' do
-  #   resources :comments
-  # end
   resources :comments, only: [:edit, :update]
 
-  # match '/users/:username', :to => 'users#show'
   resources :users
 
   resources :sessions, only: [:new, :create, :destroy]
-  namespace :tools do 
-    resources :github_accounts     
+  namespace :tools do
+    resources :github_accounts
   end
 
   resources :tasks do
@@ -49,7 +44,7 @@ Onespark::Application.routes.draw do
   put '/profiles/:username', :to => 'profiles#update'
   get '/profiles/:username/edit', :to => 'profiles#edit', as: 'edit_profile'
   get '/profiles', :to => 'profiles#index', as: 'profiles'
-  
+
 
   # Dropbox Oauth
   match '/projects/:project_id/dropbox/auth', to: 'tools/dropbox#authorize', as: :project_dropbox_auth
@@ -79,18 +74,18 @@ Onespark::Application.routes.draw do
   post '/users/:username/github/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
   post '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#create', as: :project_github_link_repo
   get '/projects/:project_id/github/new', to: 'tools/github_repositories#new', as: :new_project_github
-  
+
 
   # GitHub commits
   get '/projects/:project_id/github/commits', to: 'tools/github_repositories#commits', as: :project_github_commits
-  
+
   # Github issues
   post '/projects/:project_id/github/close_issue/:issue_id', to: 'tools/github_repositories#close_issue', as: :project_github_close_issue
   post '/projects/:project_id/github/create_issue', to: 'tools/github_repositories#create_issue', as: :project_github_issue
   post '/projects/:project_id/github/issues/:id/comments', to: 'tools/github_repositories#create_issue_comment', as: :project_github_issue_create_comment
   get '/projects/:project_id/github/issues', to: 'tools/github_repositories#issues', as: :project_github_issues
   get '/projects/:project_id/github/issues/:id/comments', to: 'tools/github_repositories#issue_comments', as: :project_github_issue_comments
-  
+
   # GiHub Account new
   match '/projects/:project_id/github/link_account', to: 'tools/github_repositories#link_account', as: :new_github_account
 
@@ -100,8 +95,8 @@ Onespark::Application.routes.draw do
   # match '/users/:id/git/repos/:repo_name', :controller => 'rest_github', :action => 'show'
 
   root to: 'static_pages#home'
-  
-  # static pages  
+
+  # static pages
   match '/imprint',    to: 'static_pages#imprint'
   match '/more',    to: 'static_pages#more'
   match '/contact',    to: 'static_pages#contact'
@@ -110,7 +105,7 @@ Onespark::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/goodbye', to: 'static_pages#goodbye'
   match '/design',    to: 'static_pages#newdesign'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
