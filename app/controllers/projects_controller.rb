@@ -6,7 +6,8 @@
 
 class ProjectsController < ApplicationController
   layout 'project', except: [:index, :new, :create]
-  # before_filter :signed_in_user
+
+  before_filter :signed_in_user
   before_filter :get_owned_projects
   before_filter :get_all_projects_of_user
 

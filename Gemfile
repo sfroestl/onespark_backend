@@ -12,6 +12,7 @@ gem 'rest-client', '~> 1.6.7'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+# Changes for robin
 gem 'thin', "1.3.1"
 gem "eventmachine", "1.0.0.rc.1"
 
