@@ -6,11 +6,12 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find_by_username(params[:id])
-
-    user_dto = UserSimpleDTO.new(user.username, user.email, user.friends)
-    Rails.logger.info ">> UserSimpleDTO #{user_dto.email} #{user_dto.username} "
-    respond_with user_dto
-
+    if user
+      user_dto = UserSimpleDTO.new(user.username, user.email, user.friends)
+      Rails.logger.info ">> UserSimpleDTO #{user_dto.email} #{user_dto.username} "
+      respond_with user_dto
+    end
+    respond_with user
   end
 
   def show_auth_user
