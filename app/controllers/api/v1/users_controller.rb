@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
-  # before_filter :authenticate_basic, except: [:create]
+  before_filter :authenticate_basic, except: [:create]
 
   respond_to :json
 
@@ -10,8 +10,10 @@ class Api::V1::UsersController < ApplicationController
       user_dto = UserSimpleDTO.new(user.username, user.email, user.friends)
       Rails.logger.info ">> UserSimpleDTO #{user_dto.email} #{user_dto.username} "
       respond_with user_dto
+    else
+      respond_with User.find_by_username(params[:id])
     end
-    respond_with user
+
   end
 
   def show_auth_user

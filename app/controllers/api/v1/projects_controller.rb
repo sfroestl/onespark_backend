@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < ApplicationController
 
-  # before_filter :authenticate_basic
+  before_filter :authenticate_basic
 
   respond_to :json
 
