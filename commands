@@ -23,3 +23,6 @@ rails generate scaffold NAME ATTRIBUTES
 rake db:reset
 
 RAILS_ENV=production rake db:create
+
+
+rvmsudo thin restart -C /etc/thin/onespark_backend.yml
