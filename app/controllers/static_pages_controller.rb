@@ -13,4 +13,8 @@ class StaticPagesController < ApplicationController
   	render 'home', layout: nil
   end
 
+  def developer
+    render 'developer', layout: nil
+  end
+
 end

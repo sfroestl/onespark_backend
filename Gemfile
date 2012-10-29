@@ -21,7 +21,6 @@ group :development do
   gem 'rspec-rails', '2.9.0'
   gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
-
   gem 'nifty-generators'
 end
 
@@ -38,8 +37,9 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'rspec-rails', '2.9.0'
   gem 'factory_girl_rails', '~> 3.2.0'
-  gem 'cucumber-rails', '1.2.1', require: false
+  gem 'cucumber-rails', '1.2.1', :require => false
   gem 'database_cleaner', '0.7.0'
+  gem "json_spec", "~> 1.0.3"
 end
 
 group :production do
