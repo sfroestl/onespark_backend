@@ -77,7 +77,7 @@
     <hr/>
 
     <article id="get_auth_user">
-        <h3>Get the authenticated user - NOT YET READY</h3>
+        <h3>Get the authenticated user</h3>
         <code>GET /user</code>
         <p>Returns the authenticated user based on the authentication credentials</p>
         <pre><strong>Response</strong>
@@ -112,12 +112,13 @@
           <code>
   <strong>username</strong> - required string
   <strong>password</strong> - required string
+  <strong>password_confirmation</strong> - required string
   <strong>email</strong> - required string
           </code>
         </pre>
         <pre><strong>Response</strong>
         <code class="language-javascript">
-  Status 200 OK
+  Status 201 CREATED
   {
     "username": "luigi",
     "email": "luigi@me.com",
@@ -141,13 +142,7 @@
         </pre>
         <pre><strong>Response</strong>
         <code class="language-javascript">
-  Status 200 OK
-  {
-    "username": "newbob",
-    "email": "bob@new-email.com",
-    "projects": [],
-    "workmates": []
-  }
+  Status 204 NO CONTENT
         </code>
       </pre>
     </article>

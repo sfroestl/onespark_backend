@@ -7,7 +7,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   # helper :sessions, :rest_github, :path, :date
-  include SessionsHelper, DateHelper, ApplicationHelper
+  include SessionsHelper, DateHelper, ApplicationHelper, ApiHelper
   require 'digest'
 
   protected
