@@ -1,23 +1,43 @@
-module Api
-  module V1
-    class UsersController < ApplicationController
-      respond_to :json
+class Api::V1::UsersController < ApplicationController
 
-      def show
-        respond_with User.find(params[:id])
-      end
+  # before_filter :authenticate_basic, except: [:create]
 
-      def create
-        respond_with User.create(params[:user])
-      end
+  respond_to :json
 
-      def update
-        respond_with User.update(params[:id], params[:user])
-      end
+  def show
+    user = User.find_by_username(params[:id])
 
-      def destroy
-        respond_with User.destroy(params[:id])
-      end
+    user_dto = UserSimpleDTO.new(user.username, user.email, user.friends)
+    Rails.logger.info ">> UserSimpleDTO #{user_dto.email} #{user_dto.username} "
+    respond_with user_dto
+
+  end
+
+  def show_auth_user
+    user = User.find_by_username(params[:id])
+
+    project_list = []
+
+    user.projects.each do |project|
+      project_dto = ProjectSimpleDTO.new(project)
+      project_list << project_dto
     end
+
+    user_dto = UserDTO.new(user.username, user.email, project_list, user.friends)
+    Rails.logger.info ">> UserDTO #{user_dto.email} #{user_dto.username} "
+    respond_with user_dto
+
+  end
+
+  def create
+    respond_with User.create(params[:user])
+  end
+
+  def update
+    respond_with User.update(params[:id], params[:user])
+  end
+
+  def destroy
+    respond_with User.destroy(params[:id])
   end
 end

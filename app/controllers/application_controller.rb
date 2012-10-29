@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper, DateHelper, ApplicationHelper
   require 'digest'
 
-
   protected
 
   def authenticate_basic
