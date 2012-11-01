@@ -204,8 +204,8 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
-  cucumber-rails (= 1.2.1)
-  database_cleaner (= 0.7.0)
+  cucumber-rails
+  database_cleaner
   execjs
   factory_girl_rails (~> 3.2.0)
   faker

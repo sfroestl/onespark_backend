@@ -16,7 +16,7 @@ gem 'jquery-ui-rails'
 # gem 'thin', "1.3.1"
 # gem "eventmachine", "1.0.0.rc.1"
 
-# Server and production 
+# Server and production
   gem 'thin','1.5.0'
 
 group :development do
@@ -40,8 +40,8 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'rspec-rails', '2.9.0'
   gem 'factory_girl_rails', '~> 3.2.0'
-  gem 'cucumber-rails', '1.2.1', :require => false
-  gem 'database_cleaner', '0.7.0'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
   gem "json_spec", "~> 1.0.3"
 end
 

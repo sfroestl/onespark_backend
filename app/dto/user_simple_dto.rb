@@ -1,3 +1,11 @@
+##
+# The UserSimpleDTO class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Editor:: Sebastian Fröstl
+# Last Edit:: 26.10.2012
+
+
 class UserSimpleDTO < BaseDTO
 
   attr_accessor :username, :email, :workmates

@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :projects, dependent: :destroy
 
-  has_many :created_tasks, class_name:"Task", dependent: :destroy
-  has_many :working_tasks, class_name:"Task"
+  has_many :created_tasks, class_name:"Task", foreign_key:"creator_id", dependent: :destroy
+  has_many :working_tasks, class_name:"Task", foreign_key:"worker_id"
 
   has_one :github_account, class_name: "Tools::GithubAccount", dependent: :destroy
 

@@ -1,5 +1,15 @@
-class Api::V1::ProjectsController < ApplicationController
+##
+# The Api::V1::ProjectsController Class
+#
+# Handles all project specific API requests
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Editor:: Sebastian Fröstl
+# Last Edit:: 26.10.2012
 
+
+class Api::V1::ProjectsController < ApplicationController
+  # basic authentification
   before_filter :authenticate_basic
 
   respond_to :json

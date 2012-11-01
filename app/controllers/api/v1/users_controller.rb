@@ -1,5 +1,17 @@
+##
+# The Api::V1::UsersController class
+#
+# Handles all user specific API requests
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Editor:: Sebastian Fröstl
+# Last Edit:: 26.10.2012
+
+
 class Api::V1::UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+  # basic authentification
   before_filter :authenticate_basic, except: [:create]
 
   respond_to :json
@@ -41,8 +53,9 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def destroy
-    respond_with User.destroy(params[:id])
+  def destroy_auth_user
+    user = @auth_user
+    respond_with User.destroy(user.id)
   end
 
   private

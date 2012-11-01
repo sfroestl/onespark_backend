@@ -1,3 +1,11 @@
+##
+# The ProjectDTO class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Editor:: Sebastian Fröstl
+# Last Edit:: 26.10.2012
+
+
 class ProjectDTO < ProjectSimpleDTO
 
   attr_accessor :coworkers

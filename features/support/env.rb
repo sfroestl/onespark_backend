@@ -5,7 +5,15 @@
 # files.
 
 require 'cucumber/rails'
+
+# JSON Steps
 require "json_spec/cucumber"
+
+# factory_girl
+require "factory_girl/step_definitions"
+# require 'factory_girl/step_definitions'
+# Dir[File.expand_path(File.join(File.dirname(__FILE__),'..','..','spec','factories','*.rb'))].each {|f| require f}
+
 
 def last_json
   page.source

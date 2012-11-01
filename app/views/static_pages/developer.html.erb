@@ -31,12 +31,18 @@
      <!-- DIE NAVIGATION -->
   <nav>
     <ul>
+    <li><a href="#users">Genereal</a>
+      <ul>
+        <li><a href="#uri">URI API v1</a></li>
+        <li><a href="#basic_auth">Basic Authentification</a></li>
+      </ul>
     <li><a href="#users">users api</a>
       <ul>
-        <li><a href="#get_user">get singe user</a></li>
+        <li><a href="#get_user">get singel user</a></li>
         <li><a href="#get_auth_user">get authenticated user</a></li>
         <li><a href="#create_user">create new user</a></li>
-        <li><a href="#update_user">update user</a></li>
+        <li><a href="#update_user">update authenticated user</a></li>
+        <li><a href="#delete_user">delete authenticated user</a></li>
       </ul>
     </li>
     <li><a href="#projects">projects api</a>
@@ -57,6 +63,22 @@
 
 
 <div id="main">
+  <section id="users">
+    <h1>General</h1>
+    <hr/>
+
+    <article id="uri">
+        <h3>Uri API v1</h3>
+        <pre><code>http://api.onespark.de/api/v1</code></pre>
+    </article>
+
+    <article id="basic_auth">
+        <h3>Basic Authentification</h3>
+        <pre><code>HEADER "Authorization: Basic username:password (base64 encoded)"</code></pre>
+    </article>
+    <hr/>
+  </section>
+
   <section id="users">
     <h1>Users API</h1>
     <hr/>
@@ -146,8 +168,21 @@
         </code>
       </pre>
     </article>
+    <hr/>
+
+    <article id="delete_user">
+      <h3>Delete the authenticated user</h3>
+        <code>DELETE /user</code>
+        <pre><strong>Response</strong>
+        <code class="language-javascript">
+  Status 204 NO CONTENT
+        </code>
+      </pre>
+    </article>
+
   </section>
 
+    <hr/>
   <section id="projects">
     <h1>Projects API</h1>
     <hr/>

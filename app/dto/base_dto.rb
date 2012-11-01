@@ -1,10 +1,10 @@
+##
+# The BaseDTO class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Editor:: Sebastian Fröstl
+# Last Edit:: 26.10.2012
+
+
 class BaseDTO
-  # attr_accessor :email, :username, :projects
-
-  # def initialize(username, email, projects)
-  #   @email = email
-  #   @username = username
-  #   @projects = projects
-  # end
-
 end

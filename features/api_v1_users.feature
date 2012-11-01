@@ -1,9 +1,14 @@
-Feature: Project API
+Feature: User API
+
+  Background:
+  Given the following user exists:
+  | username    | email           |
+  | Brandon | brandon@example.com |
 
   Scenario: Index action
-    When I send a GET request to "/api/v1/projects.json"
-    Then the JSON response should have 1 projects
-    Then the JSON response at "title" should be "Testproject"
+    When I send a GET request to "/api/v1/user.json"
+    Then the JSON response should have 1 user
+    Then the JSON response at "username" should be "Brandon"
 
 
     # Given I post to "/api/v1/users.json" with:

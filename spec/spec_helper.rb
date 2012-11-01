@@ -30,3 +30,10 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+
+# returns the basic auth header
+def basic_auth(username)
+  credentials = ActionController::HttpAuthentication::Basic.encode_credentials username, 'foobar'
+  { 'HTTP_AUTHORIZATION' =>  credentials }
+end
