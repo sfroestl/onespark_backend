@@ -1,6 +1,6 @@
 <div id="overlay_content">
   <h1>Your settings</h1>
-    
+
   	<div id ="account_details" %>
   		<dl>
   			<dt>username</dt>
@@ -19,10 +19,11 @@
   			<dd>Demo</dd>
   		</dl>
 		<p><%= link_to "Edit account", edit_user_path(current_user.username), remote: true%></p>
+    <p><%= link_to "Delete account", user_path(current_user.username), method: :delete, confirm:"Do you really want to delete your account including all your projects?" %></p>
 	</div>
 
 	<div id="linked_tools">
-		
+
 		<ul>
 		<h2>Authorized tools</h2>
 		<!-- ////// Github column ////// -->
@@ -36,7 +37,7 @@
 					</p>
 				<% end %>
 			</li>
-				
+
 
 		<!-- ////// DropBox column ////// -->
 			<li>
@@ -44,11 +45,11 @@
 				<% if @db_client or session[:dropbox_session] %>
 					<p><%= link_to 'View DrobBox account details', user_dropbox_account_path(current_user), remote: true, :disable_with => 'loading ...' %></p>
 					<p><%= link_to 'Unlink DrobBox account', '/dropbox/unlink', remote: true, confirm: "BE CAREFUL: This unlinkes your DropBox account" %></p>
-					
+
 				<% else %>
 					<p><%= link_to 'Add DrobBox account', user_dropbox_auth_path, :disable_with => 'connecting ...' %></p>
 				<% end %>
-				
+
 			</li>
 		</ul>
 	</div>

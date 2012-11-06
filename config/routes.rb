@@ -3,13 +3,19 @@ Onespark::Application.routes.draw do
   ################# Routes for API JSON #################
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :users, except: [:edit, :update, :index]
-      resources :projects
+      resources :users, only: [:create]
+      resources :projects, except: [:index, :edit, :new]
 
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'
       put '/user', to: 'users#update_auth_user'
       delete '/user', to: 'users#destroy_auth_user'
+
+      # with scope '/user' e.g. /user/projects => all projects of authenticated user)
+      scope "/user" do
+        resources :projects, only: [:index]
+      end
+
     end
   end
 

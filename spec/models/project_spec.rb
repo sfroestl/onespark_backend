@@ -57,15 +57,15 @@ describe Project do
     end
   end
 
-  describe "user is admin" do
+  describe "user is admin with write and read access" do
     let(:other_user) { FactoryGirl.create(:user) }
     before do
       project.admin!(other_user)
     end
 
     it { should be_admin(other_user) }
-    it { should_not be_reader(other_user) }
-    it { should_not be_writer(other_user) }
+    it { should be_reader(other_user) }
+    it { should be_writer(other_user) }
     its(:admins) { should include(other_user) }
     its(:coworkers) { should include(other_user) }
   end
@@ -77,6 +77,8 @@ describe Project do
     end
 
     it { should be_reader(other_user2) }
+    it { should_not be_writer(other_user2) }
+    it { should_not be_admin(other_user2) }
     its(:admins) { should_not include(other_user2) }
     its(:coworkers) { should include(other_user2) }
   end

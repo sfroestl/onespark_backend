@@ -9,7 +9,7 @@
 
 
 class Api::V1::UsersController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   # basic authentification
   before_filter :authenticate_basic, except: [:create]
@@ -42,25 +42,33 @@ class Api::V1::UsersController < ApplicationController
 
   end
 
+  # Creates a new user and returns it
+  # In case of error, returns 422 error details
   def create
-    respond_with User.create(params[:user])
+    user = User.new(params[:user])
+    if user.save
+      user_dto = UserSimpleDTO.new(user.username, user.email, [])
+      render json: user_dto, status: :created
+    else
+      render json: { error: user.errors.to_json }, :status => :unprocessable_entity
+    end
+
   end
 
   def update_auth_user
-    user = @auth_user
-    if user
-      respond_with User.update(@auth_user.id, params[:user])
-    end
+    respond_with User.update(@auth_user.id, params[:user])
   end
 
   def destroy_auth_user
     user = @auth_user
-    respond_with User.destroy(user.id)
+    if user
+      respond_with User.destroy(user.id)
+    end
   end
 
-  private
+  # private
 
-  def record_not_found
-    render :json => {:error => error.message}, :status => :not_found
-  end
+  # def record_not_found
+  #   render :json => {:error => error.message}, :status => :not_found
+  # end
 end
