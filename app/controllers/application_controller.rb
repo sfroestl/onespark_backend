@@ -2,7 +2,7 @@
 # The ApplicationController class
 #
 # Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
-# Last Edit:: 21.07.2012
+# Last Edit:: 01.11.2012
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
       # password but this is the idea.
       user = User.find_by_username(username)
       if user && user.authenticate(password)
-        Rails.logger.info "--> Basic auth params: #{username} #{password}"
+        Rails.logger.info "--> Request: #{request.method} #{request.url}"
+        Rails.logger.info "--> Basic auth params: #{username}"
         @auth_user = user
         true
       else

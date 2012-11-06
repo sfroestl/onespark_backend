@@ -21,7 +21,7 @@ class Tools::GithubAccountsController < ApplicationController
     cookies[:oauth_project_id] = params[:project_id]
     Rails.logger.info">> GitHub AUTH: request: #{request.fullpath} cookie #{cookies[:oauth_project_id]} proj.id #{params[:project_id]}"
 
-    Rails.logger.info ">> GithubTool: authorize App | #{current_user.username} | #{session[:user_id]}"
+    Rails.logger.info ">> GithubTool: authorize App | #{session[:user_id]}"
     @current_user ||= User.find(session[:user_id])
     redirect_to "#{GITHUB_CONFIG['auth_url']}?client_id=#{GITHUB_CONFIG['id']}&scope=user,repo"
   end

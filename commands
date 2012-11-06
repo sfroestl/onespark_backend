@@ -26,3 +26,4 @@ RAILS_ENV=production rake db:create
 
 
 rvmsudo thin restart -C /etc/thin/onespark_backend.yml
+rvmsudo thin config -C /etc/thin/myapp.yml -c /var/rails/myapp --servers 2 -p 5000 -e production

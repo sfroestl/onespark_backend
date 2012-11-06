@@ -20,6 +20,7 @@ module ApiHelper
     return project_dto_list
   end
 
+
   # Converts Array of Users to Array of WorkmateDTOs
   def users_to_workmates_dto(users)
     user_dto_list = []
@@ -31,5 +32,9 @@ module ApiHelper
 
     return user_dto_list
   end
+
+
+
+
 
 end

@@ -41,8 +41,14 @@ class Project < ActiveRecord::Base
   end
 
   def admin?(user)
+    return true if user.id == user_id
+
     admin = project_coworkers.find_by_user_id(user.id)
-    admin.permission == 3
+    if admin && admin.permission == 3
+      true
+    else
+      false
+    end
   end
 
   def admin!(user)
@@ -50,8 +56,14 @@ class Project < ActiveRecord::Base
   end
 
   def writer?(user)
+    return true if user.id == user_id
+
     writer = project_coworkers.find_by_user_id(user.id)
-    writer.permission == 2
+    if writer && writer.permission >= 2
+      true
+    else
+      false
+    end
   end
 
   def writer!(user)
@@ -59,8 +71,14 @@ class Project < ActiveRecord::Base
   end
 
   def reader?(user)
+    return true if user.id == user_id
+
     reader = project_coworkers.find_by_user_id(user.id)
-    reader.permission == 1
+    if reader && reader.permission >= 1
+      true
+    else
+      false
+    end
   end
 
   def reader!(user)

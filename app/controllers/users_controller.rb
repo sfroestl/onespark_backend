@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:id])
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to goodbye_path, :flash => { :success => 'Your account has been deleted.' }}
+      format.html { redirect_to root_path, :flash => { :success => 'Your account has been deleted.' }}
       format.json { head :no_content }
     end
   end
