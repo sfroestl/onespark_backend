@@ -9,37 +9,23 @@
 
 
 class Api::V1::UsersController < ApplicationController
-  # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   # basic authentification
   before_filter :authenticate_basic, except: [:create]
+  before_filter :find_user, only: [:show]
 
   respond_to :json
 
   def show
-    user = User.find_by_username(params[:id])
-    if user
-      workmates =  users_to_workmates_dto(user.friends)
+    if @user
+      workmates =  users_to_workmates_dto(@user.friends)
 
-      user_dto = UserSimpleDTO.new(user.username, user.email, workmates)
+      user_dto = UserSimpleDTO.new(@user.username, @user.email, workmates)
       Rails.logger.info ">> UserSimpleDTO #{user_dto.email} #{user_dto.username} "
 
     end
     respond_with user_dto
-  end
-
-  def show_auth_user
-    user = @auth_user
-
-    # Array for ProjectSimpleDTOs
-    project_list = projects_to_simple_dto(user.projects)
-    workmates =  users_to_workmates_dto(user.friends)
-
-    user_dto = UserDTO.new(user.username, user.email, project_list, workmates)
-    Rails.logger.info ">> UserDTO #{user_dto.email} #{user_dto.username} "
-
-    respond_with user_dto
-
   end
 
   # Creates a new user and returns it
@@ -47,16 +33,24 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(params[:user])
     if user.save
-      user_dto = UserSimpleDTO.new(user.username, user.email, [])
+      user_dto = UserDTO.new(user.username, user.email)
       render json: user_dto, status: :created
     else
-      render json: { error: user.errors.to_json }, :status => :unprocessable_entity
+      render json: { errors: user.errors }, :status => :unprocessable_entity
     end
 
   end
 
+  def show_auth_user
+    respond_with user_to_user_dto(@auth_user)
+  end
+
   def update_auth_user
-    respond_with User.update(@auth_user.id, params[:user])
+    if @auth_user.update_attributes(params[:user])
+      render json: user_to_user_dto(@auth_user), status: :ok
+    else
+      render json: { errors: @auth_user.errors}, status: :unprocessable_entity
+    end
   end
 
   def destroy_auth_user
@@ -66,9 +60,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # private
 
-  # def record_not_found
-  #   render :json => {:error => error.message}, :status => :not_found
-  # end
+  private
+
+    def find_user
+      @user = User.find_by_username(params[:id])
+    end
+
+    # RecordNotFound Exception handling return method
+    def record_not_found(exception)
+      Rails.logger.error ">>> Error in Api::V1::ProjectsController: Not Found: #{exception.message}"
+      render :json => { :error => exception.message }, :status => :not_found
+    end
 end

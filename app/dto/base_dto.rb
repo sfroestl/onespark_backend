@@ -6,5 +6,5 @@
 # Last Edit:: 26.10.2012
 
 
-class BaseDTO
+class BaseDTO < Object
 end

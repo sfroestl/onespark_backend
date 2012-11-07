@@ -11,14 +11,23 @@ class UserDTO < UserSimpleDTO
 
   attr_accessor :projects
 
-  def initialize(username, email, projects, workmates)
+  def initialize(username="", email="", projects=[], workmates=[])
     @username = username
     @email = email
     @projects = projects
     @workmates = workmates
   end
 
-  # def initialize(user)
+  # def init_with_user(params)
+  #   @username = params[:username]
+  #   @email = params[:email]
+  #   @projects = params[:projects]
+  #   @workmates = params[:workmates]
+  # end
+
+
+
+  # def init_with_user(user)
   #   @username = user.username
   #   @email = user.email
   #   @projects = projects_to_simple_dto(user.projects)

@@ -7,7 +7,7 @@
 
 class ProjectSimpleDTO < BaseDTO
 
-  attr_accessor :id, :title, :desc, :due_date, :coworkers
+  attr_accessor :id, :title, :desc, :due_date
 
   def initialize(project_data)
     @id = project_data[:id]

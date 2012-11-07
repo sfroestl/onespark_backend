@@ -33,6 +33,13 @@ module ApiHelper
     return user_dto_list
   end
 
+  def user_to_user_dto(user)
+    userDTO = UserDTO.new(user.username, user.email,
+      projects_to_simple_dto(user.projects),
+      users_to_workmates_dto(user.friends))
+    return userDTO
+  end
+
 
 
 

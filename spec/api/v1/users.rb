@@ -4,15 +4,15 @@ describe "API v1 Users" , :type => :request do
 
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:user_url) { "/api/v1/user" }
+  let(:users_url) { "/api/v1/users" }
 
   describe "get authentificated user" do
-    let(:user_url) { "/api/v1/user" }
-    let(:users_url) { "/api/v1/users" }
 
     it "with basic_auth returns UserDTO as JSON" do
       get "#{user_url}", nil, basic_auth(user.username)
 
-      user_json = UserDTO.new(user.username, user.email, [], []).to_json
+      user_json = UserDTO.new(user.username, user.email).to_json
       response.body.should eql(user_json)
       response.status.should eql(200)
     end
@@ -39,24 +39,6 @@ describe "API v1 Users" , :type => :request do
         response.body.should_not include 'password'
       end
     end
-
-    describe "with invalid information (email wrong)" do
-      before do
-        post "#{user_url}",
-          user: { username: new_user.username, email: 'failemail.com', password: 'foobar', password_confirmation: 'foobar' },
-          :format => :json
-      end
-
-      it "should respond with 422" do
-        response.status.should eql(422)
-      end
-
-      it "should return error message" do
-        response.body.should include 'error'
-        response.body.should include 'email','invalid'
-      end
-    end
-
   end
 
   describe "updated users email adress" do
@@ -66,8 +48,11 @@ describe "API v1 Users" , :type => :request do
       put "#{user_url}", { email: new_email }, basic_auth(user.username)
     end
 
-    it "should respond with 204" do
-      response.status.should eql(204)
+    it "should respond with 200" do
+      response.status.should eql(200)
+    end
+    it "should return updated user" do
+      response.body.should include 'email'
     end
   end
 

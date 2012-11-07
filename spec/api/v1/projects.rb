@@ -50,7 +50,7 @@ describe "API v1 Projects" , :type => :request do
     end
 
     it "response should include project_u1" do
-      project_u1_json = ProjectSimpleDTO.new(project_u1).to_json
+      project_u1_json = ProjectDTO.new(project_u1).to_json
       response.body.should eql(project_u1_json)
     end
   end

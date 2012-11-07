@@ -26,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def show
-    respond_with ProjectSimpleDTO.new(@project)
+    respond_with ProjectDTO.new(@project)
   end
 
   def create
@@ -42,7 +42,6 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def update
-
     if @project.update_attributes(params[:project])
       render json: ProjectDTO.new(@project), status: :ok
     else
@@ -52,17 +51,19 @@ class Api::V1::ProjectsController < ApplicationController
 
   def destroy
     Project.destroy(params[:id])
-    render json: { message: "Project deleted" }, status: :ok
+    render json: { message: "Project deleted." }, status: :ok
   end
 
 
   private
 
   def find_project
+    Rails.logger.info "--> find project"
     @project = Project.find(params[:id])
   end
 
   def has_view_right?
+    Rails.logger.info "--> filter has_view_right?"
     if @project.reader?(@auth_user)
       true
     else
@@ -72,6 +73,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   # Validates the users DELETE right
   def has_delete_right?
+    Rails.logger.info "--> filter has_delete_right?"
     if @project.user_id == @auth_user.id
       true
     else
@@ -81,6 +83,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   # Validates the users UPDATE right
   def has_edit_right?
+    Rails.logger.info "--> filter has_edit_right?"
     if @project.writer?(@auth_user)
       true
     else
