@@ -8,13 +8,12 @@
 # Last Edit:: 26.10.2012
 
 
-class Api::V1::ProjectsController < ApplicationController
-  # RecordNotFound Exception rescue
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-
-  # basic authentification
+class Api::V1::ProjectsController < Api::V1::ApiController
+  # basic authentification filter
   before_filter :authenticate_basic
+
   before_filter :find_project, only: [:show, :update, :destroy]
+  # permission filters see PermissionHelper
   before_filter :has_delete_right?, only: [:destroy]
   before_filter :has_view_right?, only: [:show]
   before_filter :has_edit_right?, only: [:update]
@@ -30,8 +29,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    user = @auth_user
-    new_project = user.projects.build(params[:project])
+    new_project = @auth_user.projects.build(params[:project])
 
     if new_project.save
       project_dto = ProjectDTO.new(new_project)
@@ -62,35 +60,6 @@ class Api::V1::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def has_view_right?
-    Rails.logger.info "--> filter has_view_right?"
-    if @project.reader?(@auth_user)
-      true
-    else
-      forbidden
-    end
-  end
-
-  # Validates the users DELETE right
-  def has_delete_right?
-    Rails.logger.info "--> filter has_delete_right?"
-    if @project.user_id == @auth_user.id
-      true
-    else
-      forbidden
-    end
-  end
-
-  # Validates the users UPDATE right
-  def has_edit_right?
-    Rails.logger.info "--> filter has_edit_right?"
-    if @project.writer?(@auth_user)
-      true
-    else
-      forbidden
-    end
-  end
-
   # returns all owned projects of a user
   def get_owned_projects_of (user)
     @projects = Project.by_user(user) unless user.nil?
@@ -101,13 +70,4 @@ class Api::V1::ProjectsController < ApplicationController
     @collab_projects = user.project_permissions unless user.nil?
   end
 
-  def forbidden
-    render :json =>  { :error => "Not allowed!" }, :status => :forbidden
-  end
-
-  # RecordNotFound Exception handling return method
-  def record_not_found(exception)
-    Rails.logger.error ">>> Error in Api::V1::ProjectsController: Not Found: #{exception.message}"
-    render :json => { :error => exception.message }, :status => :not_found
-  end
 end

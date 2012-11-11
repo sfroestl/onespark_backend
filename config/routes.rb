@@ -14,6 +14,8 @@ Onespark::Application.routes.draw do
       # with scope '/user' e.g. /user/projects => all projects of authenticated user)
       scope "/user" do
         resources :projects, only: [:index]
+        resources :profiles, only: [:show, :update]
+        put '/profile', to: 'profiles#update'
       end
 
     end

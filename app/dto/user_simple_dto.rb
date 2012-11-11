@@ -8,12 +8,12 @@
 
 class UserSimpleDTO < BaseDTO
 
-  attr_accessor :username, :email, :workmates
+  attr_accessor :username, :email, :profile
 
-  def initialize(username="", email="", workmates=[])
+  def initialize(username="", email="", profile=nil)
     @username = username
     @email = email
-    @workmates = workmates
+    @profile = ProfileDTO.new(profile)
   end
 
   # def initialize(params)

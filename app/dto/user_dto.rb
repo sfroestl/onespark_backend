@@ -9,13 +9,14 @@
 class UserDTO < UserSimpleDTO
   # include ApiHelper
 
-  attr_accessor :projects
+  attr_accessor :projects, :contacts
 
-  def initialize(username="", email="", projects=[], workmates=[])
+  def initialize(username="", email="", projects=[], contacts=[], profile=[])
     @username = username
     @email = email
     @projects = projects
-    @workmates = workmates
+    @contacts = contacts
+    @profile = ProfileDTO.new(profile)
   end
 
   # def init_with_user(params)

@@ -42,6 +42,7 @@
         <li><a href="#get_auth_user">get authenticated user</a></li>
         <li><a href="#create_user">create new user</a></li>
         <li><a href="#update_user">update authenticated user</a></li>
+        <li><a href="#update_user_profile">update authenticated users profile</a></li>
         <li><a href="#delete_user">delete authenticated user</a></li>
       </ul>
     </li>
@@ -68,7 +69,7 @@
     <hr/>
 
     <article id="uri">
-        <h3>Uri API v1</h3>
+        <h3>URI API v1</h3>
         <pre><code>http://api.onespark.de/api/v1</code></pre>
     </article>
 
@@ -91,7 +92,13 @@
   {
     "username": "bob",
     "email": "bob@me.com",
-    "workmates": []
+    "profile":{
+      "forename":"Bob",
+      "surname":"van Tester",
+      "city":"Canterbury",
+      "about":"Der Titel dieses Artikels ist mehrdeutig",
+      "avatar_url":"http//:api.onespark.de/avatar-bob.jpg"
+    }
   }
           </code>
         </pre>
@@ -120,7 +127,16 @@
         "desc":"A second sample project",
         "due_date":"2012-11-01T00:00:00+01:00"
       }],
-    "workmates":[]
+    "contacts": [
+      { "username":"luigi" }
+    ],
+    "profile":{
+      "forename":"Bob",
+      "surname":"van Tester",
+      "city":"Canterbury",
+      "about":"Der Titel dieses Artikels ist mehrdeutig",
+      "avatar_url":"http//:api.onespark.de/avatar-bob.jpg"
+    }
   }
           </code>
         </pre>
@@ -145,7 +161,8 @@
     "username": "luigi",
     "email": "luigi@me.com",
     "projects": [],
-    "workmates": []
+    "contacts": [],
+    "profile": []
   }
         </code>
       </pre>
@@ -160,6 +177,45 @@
           <code>
   <strong>username</strong> - optional string
   <strong>email</strong> - optional string
+          </code>
+        </pre>
+        <pre><strong>Response</strong>
+          <p>Returns the changed user with profile</p>
+        <code class="language-javascript">
+  Status 200
+  {
+    "username": "bob",
+    "email": "bob@me.com",
+    "projects": [
+      {
+        "id":5,
+        "title":"Testfertsch",
+        "desc":"A sample project",
+        "due_date":"2012-12-01T00:00:00+01:00"
+      },{
+        "id":6,
+        "title":"Nonichfertsch",
+        "desc":"A second sample project",
+        "due_date":"2012-11-01T00:00:00+01:00"
+      }],
+    "contacts":[],
+    "profile": []
+  }
+        </code>
+      </pre>
+    </article>
+
+    <hr/>
+
+    <article id="update_user_profile">
+      <h3>Update authenticated users profile</h3>
+        <code>PUT /user/profile</code>
+        <pre><strong>Input</strong>
+          <code>
+  <strong>forename</strong> - optional string
+  <strong>surname</strong> - optional string
+  <strong>city</strong> - optional string
+  <strong>about</strong> - optional string
           </code>
         </pre>
         <pre><strong>Response</strong>
@@ -181,7 +237,14 @@
         "desc":"A second sample project",
         "due_date":"2012-11-01T00:00:00+01:00"
       }],
-    "workmates":[]
+    "contacts":[],
+    "profile": {
+        "forename": "Bosse",
+        "surname": "Miller",
+        "city": null,
+        "about": null,
+        "avatar_url": null
+    }
   }
         </code>
       </pre>
@@ -241,9 +304,9 @@
     "title":"Testfertsch",
     "desc":"testdescr",
     "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[
-      {"username":"bob"}
-      ],
+    "coworkers":[{
+        "username":"bob"
+      }],
     "updated_at":"2012-10-26T12:04:50+02:00",
     "owner":"luigi"
   }

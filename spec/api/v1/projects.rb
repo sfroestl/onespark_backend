@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "API v1 Projects" , :type => :request do
 
 
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
 
   let!(:project_u1) { FactoryGirl.create(:project, user: user) }

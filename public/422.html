@@ -8,9 +8,15 @@
 
 <body>
   <!-- This file lives in public/422.html -->
-  <a href="/" class="badge">
-    <img src='https://dl.dropbox.com/u/37073325/onespark/signet.png' alt='one spark' />
-  </a>
+<% if current_user %>
+    <a href="/projects" class="badge">
+      <img src='https://dl.dropbox.com/u/37073325/onespark/signet.png' alt='one spark' />
+    </a>
+  <% else %>
+    <a href="/" class="badge">
+      <img src='https://dl.dropbox.com/u/37073325/onespark/signet.png' alt='one spark' />
+    </a>
+  <% end %>
   <div class="brand">
     <a><img src='https://dl.dropbox.com/u/37073325/onespark/logo-sw.png' alt='onespark logo' /></a>
   </div>

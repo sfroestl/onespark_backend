@@ -22,25 +22,26 @@ module ApiHelper
 
 
   # Converts Array of Users to Array of WorkmateDTOs
-  def users_to_workmates_dto(users)
-    user_dto_list = []
+  def users_to_contacts(users)
+    contacts_list = []
 
-    users.each do |project|
-      workmate_dto = WorkmateDTO.new(project)
-      user_dto_list << workmate_dto
+    users.each do |user|
+      contacts_list << { username: user.username }
     end
-
-    return user_dto_list
+    return contacts_list
   end
 
-  def user_to_user_dto(user)
+  def user_to_dto(user)
     userDTO = UserDTO.new(user.username, user.email,
       projects_to_simple_dto(user.projects),
-      users_to_workmates_dto(user.friends))
+      users_to_contacts(user.friends),
+      profile_to_profile_dto(user.profile))
     return userDTO
   end
 
-
+  def profile_to_profile_dto(profile)
+    ProfileDTO.new(profile)
+  end
 
 
 

@@ -11,10 +11,11 @@ class ProjectsController < ApplicationController
   before_filter :get_owned_projects
   before_filter :get_all_projects_of_user
 
-  # before_filter :project_admins, only: [:update]
-  # before_filter :project_writers, only: [:update]
-  # before_filter :project_readers, except: [:index]
-  # before_filter :setup_user_friends, only: [:show]
+  before_filter :find_project, except: [:index, :create, :new]
+
+  before_filter :has_delete_right?, only: [:destroy]
+  before_filter :has_view_right?, only: [:show]
+  before_filter :has_edit_right?, only: [:update, :edit]
 
 
   # GET /projects
@@ -32,7 +33,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-     @project = Project.find(params[:id])
 
      respond_to do |format|
        format.html # show.html.erb
@@ -73,7 +73,6 @@ class ProjectsController < ApplicationController
   # DELETE /tests/1
   # DELETE /tests/1.json
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
 
     respond_to do |format|
@@ -90,7 +89,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = Project.find(params[:id])
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -104,6 +102,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def find_project
+      Rails.logger.info "--> find project"
+      @project = Project.find(params[:id])
+    end
 
     # if not signed in, show sign_in page and redirect to first request uri
     def signed_in_user
