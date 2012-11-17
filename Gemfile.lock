@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/josevalim/active_model_serializers.git
+  revision: 9f5e1b1776b67e2a601b0205fbba705a0cde55e6
+  specs:
+    active_model_serializers (0.5.2)
+      activemodel (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +206,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  active_model_serializers!
   annotate (~> 2.4.1.beta)
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.0.0)

@@ -11,7 +11,7 @@ gem 'rest-client', '~> 1.6.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
 # Changes for robin
 # gem 'thin', "1.3.1"
 # gem "eventmachine", "1.0.0.rc.1"

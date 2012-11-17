@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new
     respond_to do |format|
       format.html { render 'new', layout: 'static_pages'}
-      format.json { render json: @user }
+      format.json { render json: @user.to_json }
     end
   end
 

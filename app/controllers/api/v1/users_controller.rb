@@ -17,10 +17,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   respond_to :json
 
   def show
-    if @user
-      user_simple_dto = UserSimpleDTO.new(@user.username, @user.email, @user.profile)
-    end
-    respond_with user_simple_dto
+    render json: @user
   end
 
   # Creates a new user and returns it
@@ -29,8 +26,7 @@ class Api::V1::UsersController < Api::V1::ApiController
     user = User.new(params[:user])
     if user.save
       user.create_profile
-      user_dto = UserDTO.new(user.username, user.email, [], [], user.profile)
-      render json: user_dto, status: :created
+      render json: user, status: :created
     else
       render json: { errors: user.errors }, :status => :unprocessable_entity
     end
@@ -38,12 +34,12 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def show_auth_user
-    respond_with user_to_dto(@auth_user)
+    render json: @auth_user
   end
 
   def update_auth_user
     if @auth_user.update_attributes(params[:user])
-      render json: user_to_dto(@auth_user), status: :ok
+      render json: @auth_user, status: :ok
     else
       render json: { errors: @auth_user.errors}, status: :unprocessable_entity
     end

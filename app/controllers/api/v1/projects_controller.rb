@@ -21,19 +21,18 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   respond_to :json
 
   def index
-    respond_with projects_to_simple_dto(Project.by_user(@auth_user))
+    render json: Project.by_user(@auth_user)
   end
 
   def show
-    respond_with ProjectDTO.new(@project)
+	render json: @project
   end
 
   def create
     new_project = @auth_user.projects.build(params[:project])
 
     if new_project.save
-      project_dto = ProjectDTO.new(new_project)
-      render json: project_dto, status: :created
+      render json: new_project, status: :created
     else
       render json: { error: new_project.errors.to_json }, :status => :unprocessable_entity
     end
@@ -41,7 +40,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
 
   def update
     if @project.update_attributes(params[:project])
-      render json: ProjectDTO.new(@project), status: :ok
+      render json: @project, status: :ok
     else
       render json: { errors: @project.errors}, status: :unprocessable_entity
     end
