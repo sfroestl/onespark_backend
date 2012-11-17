@@ -34,4 +34,7 @@ class Api::V1::ApiController < ApplicationController
         end
       end
     end
+    def current_user
+      @auth_user
+    end
 end
