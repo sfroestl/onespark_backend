@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new
     respond_to do |format|
       format.html { render 'new', layout: 'static_pages'}
-      format.json { render json: @user.to_json }
+      format.json { render :json => @user.to_json }
     end
   end
 
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.js {}
-      format.json { render json: @user }
+      format.json { render :json => @user.to_json  }
     end
   end
 
@@ -49,10 +49,10 @@ class UsersController < ApplicationController
           @user.create_profile
           sign_in @user
           format.html { redirect_to projects_path, :flash => { :success => 'Welcome to the One Spark!' }}
-          format.json { render json: @user, status: :created, location: @user }
+          format.json { render :json => @user.to_json , status: :created, location: @user }
         else
           format.html { render 'new', layout: 'static_pages' }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.json { render json: @user.errors.to_json , status: :unprocessable_entity }
         end
       end
   end
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
         else
           format.js { render 'shared/_replace_form.js' }
           format.html { render action: "edit" }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.json { render json: @user.errors.to_json, status: :unprocessable_entity }
         end
     end
   end
