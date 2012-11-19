@@ -15,7 +15,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
 
   def update
      if @auth_user.profile.update_attributes(params[:profile])
-      render json: @auth_user, status: :ok
+      render json: @auth_user, :serializer => AuthUserSerializer, status: :ok
     else
       render json: { errors: @auth_user.profile.errors}, status: :unprocessable_entity
     end

@@ -98,17 +98,19 @@
         <pre><strong>Response</strong>
           <code class="language-javascript">
   Status 200 OK
-  {
-    "username": "bob",
-    "email": "bob@me.com",
-    "profile":{
-      "forename":"Bob",
-      "surname":"van Tester",
-      "city":"Canterbury",
-      "about":"Der Titel dieses Artikels ist mehrdeutig",
-      "avatar_url":"http//:api.onespark.de/avatar-bob.jpg"
+{
+    "user": {
+        "username": "luigi",
+        "email": "luigi@testx.de",
+        "profile": {
+            "forename": "Luigi",
+            "surname": "",
+            "city": "Mario World",
+            "about": "",
+            "avatar_url": null
+        }
     }
-  }
+}
           </code>
         </pre>
     </article>
@@ -121,32 +123,36 @@
         <pre><strong>Response</strong>
           <code class="language-javascript">
   Status 200 OK
-  {
-    "username": "bob",
-    "email": "bob@me.com",
-    "projects": [
-      {
-        "id":5,
-        "title":"Testfertsch",
-        "desc":"A sample project",
-        "due_date":"2012-12-01T00:00:00+01:00"
-      },{
-        "id":6,
-        "title":"Nonichfertsch",
-        "desc":"A second sample project",
-        "due_date":"2012-11-01T00:00:00+01:00"
-      }],
-    "contacts": [
-      { "username":"luigi" }
-    ],
-    "profile":{
-      "forename":"Bob",
-      "surname":"van Tester",
-      "city":"Canterbury",
-      "about":"Der Titel dieses Artikels ist mehrdeutig",
-      "avatar_url":"http//:api.onespark.de/avatar-bob.jpg"
+{
+    "auth_user": {
+        "username": "bob",
+        "email": "bob@me.com",
+        "projects": [{
+            "id": 1,
+            "due_date": null,
+            "title": "Testfertsch"
+        }, {
+            "id": 2,
+            "due_date": "2012-11-01T00:00:00+01:00",
+            "title": "Start learning ember.js"
+        }, {
+            "id": 5,
+            "due_date": "2012-12-24T00:00:00+01:00",
+            "title": "johnnys test"
+        }],
+        "profile": {
+            "forename": "Bob",
+            "surname": "Maria",
+            "city": "Buxdehude",
+            "about": "Der Titel dieses Artikels ist mehrdeutig",
+            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
+        },
+        "contacts": [{
+            "username": "luigi",
+            "email": "luigi@testx.de"
+        }]
     }
-  }
+}
           </code>
         </pre>
     </article>
@@ -192,24 +198,36 @@
           <p>Returns the changed user with profile</p>
         <code class="language-javascript">
   Status 200
-  {
-    "username": "bob",
-    "email": "bob@me.com",
-    "projects": [
-      {
-        "id":5,
-        "title":"Testfertsch",
-        "desc":"A sample project",
-        "due_date":"2012-12-01T00:00:00+01:00"
-      },{
-        "id":6,
-        "title":"Nonichfertsch",
-        "desc":"A second sample project",
-        "due_date":"2012-11-01T00:00:00+01:00"
-      }],
-    "contacts":[],
-    "profile": []
-  }
+{
+    "auth_user": {
+        "username": "bob",
+        "email": "bob@testme.com",
+        "projects": [{
+            "id": 1,
+            "due_date": null,
+            "title": "Testfertsch"
+        }, {
+            "id": 2,
+            "due_date": "2012-11-01T00:00:00+01:00",
+            "title": "Start learning ember.js"
+        }, {
+            "id": 5,
+            "due_date": "2012-12-24T00:00:00+01:00",
+            "title": "johnnys test"
+        }],
+        "profile": {
+            "forename": "Bob",
+            "surname": "Maria",
+            "city": "Buxdehude",
+            "about": "Der Titel dieses Artikels ist mehrdeutig",
+            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
+        },
+        "contacts": [{
+            "username": "luigi",
+            "email": "luigi@testx.de"
+        }]
+    }
+}
         </code>
       </pre>
     </article>
@@ -231,30 +249,36 @@
           <p>Returns the changed user</p>
         <code class="language-javascript">
   Status 200
-  {
-    "username": "bob",
-    "email": "bob@me.com",
-    "projects": [
-      {
-        "id":5,
-        "title":"Testfertsch",
-        "desc":"A sample project",
-        "due_date":"2012-12-01T00:00:00+01:00"
-      },{
-        "id":6,
-        "title":"Nonichfertsch",
-        "desc":"A second sample project",
-        "due_date":"2012-11-01T00:00:00+01:00"
-      }],
-    "contacts":[],
-    "profile": {
-        "forename": "Bosse",
-        "surname": "Miller",
-        "city": null,
-        "about": null,
-        "avatar_url": null
+{
+    "auth_user": {
+        "username": "bob",
+        "email": "bob@testme.com",
+        "projects": [{
+            "id": 1,
+            "due_date": null,
+            "title": "Testfertsch"
+        }, {
+            "id": 2,
+            "due_date": "2012-11-01T00:00:00+01:00",
+            "title": "Start learning ember.js"
+        }, {
+            "id": 5,
+            "due_date": "2012-12-24T00:00:00+01:00",
+            "title": "johnnys test"
+        }],
+        "profile": {
+            "forename": "Bob",
+            "surname": "Maria",
+            "city": "Buxdehude",
+            "about": "Der Titel dieses Artikels ist mehrdeutig",
+            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
+        },
+        "contacts": [{
+            "username": "luigi",
+            "email": "luigi@testx.de"
+        }]
     }
-  }
+}
         </code>
       </pre>
     </article>
@@ -283,20 +307,21 @@
         <pre><strong>Response</strong>
           <code class="language-javascript">
   Status 200 OK
-  [
-    {
-      "id":7,
-      "title":"Testfertsch",
-      "desc":"testdescr",
-      "due_date":null
-    },
-    {
-      "id":5,
-      "title":"Test from post",
-      "desc":"Test from put",
-      "due_date":"2012-12-12T00:00:00+01:00"
-    }
-  ]
+{
+    "projects": [{
+        "id": 1,
+        "due_date": null,
+        "title": "Testfertsch"
+    }, {
+        "id": 2,
+        "due_date": "2012-11-01T00:00:00+01:00",
+        "title": "Start learning ember.js"
+    }, {
+        "id": 5,
+        "due_date": "2012-12-24T00:00:00+01:00",
+        "title": "johnnys test"
+    }]
+}
           </code>
         </pre>
     </article>
@@ -309,16 +334,26 @@
           <code class="language-javascript">
   Status 200 OK
   {
-    "id":2,
-    "title":"Testfertsch",
-    "desc":"testdescr",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[{
-        "username":"bob"
-      }],
-    "updated_at":"2012-10-26T12:04:50+02:00",
-    "owner":"luigi"
-  }
+    "project": {
+        "id": 1,
+        "desc": "",
+        "due_date": null,
+        "title": "Testfertsch",
+        "contributors": [{
+            "username": "luigi",
+            "email": "luigi@testx.de"
+        }],
+        "tasks": [{
+            "id": 2,
+            "due_date": "2012-12-12T00:00:00+01:00",
+            "title": "New UI concept"
+        }, {
+            "id": 3,
+            "due_date": null,
+            "title": "Do it!"
+        }]
+    }
+}
           </code>
         </pre>
     </article>
@@ -338,15 +373,16 @@
         <pre><strong>Response</strong>
           <code class="language-javascript">
   Status 201 OK
-  {
-    "id":3,
-    "title":"Testtitle 2",
-    "desc":"Description",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[],
-    "updated_at":"2012-11-07T12:28:24+01:00",
-    "owner":"bob"
-  }
+{
+    "project": {
+        "id": 6,
+        "desc": null,
+        "due_date": null,
+        "title": "My new homepage",
+        "contributors": [],
+        "tasks": []
+    }
+}
           </code>
         </pre>
     </article>
@@ -367,15 +403,16 @@
         <pre><strong>Response</strong>
           <code class="language-javascript">
   Status 200 OK
-  {
-    "id":3,
-    "title":"Changed Title",
-    "desc":"Bobs new project",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[],
-    "updated_at":"2012-11-07T12:37:39+01:00",
-    "owner":"bob"
-  }
+{
+    "project": {
+        "id": 6,
+        "desc": "My new homepage should be very pretty",
+        "due_date": null,
+        "title": "My new homepage",
+        "contributors": [],
+        "tasks": []
+    }
+}
           </code>
         </pre>
     </article>
@@ -405,7 +442,7 @@
 
  <hr/>
   <section id="tasks">
-    <h1>Tasks API</h1>
+    <h1>Tasks API - COMING SOON</h1>
     <hr/>
 
     <article id="get_tasks">
