@@ -25,13 +25,10 @@ describe "Api::V1::Projects" do
       response.body.should include(project_u1.title)
     end
 
-    it "response should include tilte, desc, due_date and id" do
+    it "response should include tilte, due_date and id" do
       response.body.should include ('title')
       response.body.should include (project_u1.title)
       response.body.should include (project2_u1.title)
-
-      response.body.should include ('desc')
-      response.body.should include (project_u1.desc)
 
       response.body.should include ('due_date')
       response.body.should include ('id')
