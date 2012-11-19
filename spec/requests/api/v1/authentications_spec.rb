@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "API authentication" , :type => :request do
+describe "Api::V1::Authentications" do
 
   let(:user) { FactoryGirl.create(:user) }
 

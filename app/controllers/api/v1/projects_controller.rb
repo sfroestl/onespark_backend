@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def show
-	render json: @project
+    render json: @project
   end
 
   def create

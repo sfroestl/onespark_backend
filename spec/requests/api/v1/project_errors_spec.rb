@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe "API v1 Projects Errors" , :type => :request do
+describe "Api::V1::ProjectErrors" do
+
 
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
@@ -61,4 +62,5 @@ describe "API v1 Projects Errors" , :type => :request do
       end
     end
   end
+
 end

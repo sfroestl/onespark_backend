@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe "API v1 Projects" , :type => :request do
-
+describe "Api::V1::Projects" do
 
   let!(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
@@ -23,8 +22,7 @@ describe "API v1 Projects" , :type => :request do
     end
 
     it "response should include project_u1" do
-      user_projects_json = projects_to_simple_dto(Project.by_user(user)).to_json
-      response.body.should eql(user_projects_json)
+      response.body.should include(project_u1.title)
     end
 
     it "response should include tilte, desc, due_date and id" do
@@ -50,7 +48,7 @@ describe "API v1 Projects" , :type => :request do
     end
 
     it "response should include project_u1" do
-      project_u1_json = ProjectDTO.new(project_u1).to_json
+      project_u1_json = ProjectSerializer.new(project_u1).to_json
       response.body.should eql(project_u1_json)
     end
   end

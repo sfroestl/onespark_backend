@@ -12,6 +12,8 @@ include ApiHelper
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+
+  config.pattern = "**/*_spec.rb"
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -35,8 +37,4 @@ RSpec.configure do |config|
 end
 
 
-# returns the basic auth header
-def basic_auth(username)
-  credentials = ActionController::HttpAuthentication::Basic.encode_credentials username, 'foobar'
-  { 'HTTP_AUTHORIZATION' =>  credentials }
-end
+

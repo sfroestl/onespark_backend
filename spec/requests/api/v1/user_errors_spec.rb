@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "API v1 Users Errors" , :type => :request do
+describe "Api::V1::UserErrors" do
 
   describe "post new user" do
 
@@ -22,6 +22,5 @@ describe "API v1 Users Errors" , :type => :request do
       end
     end
   end
-
 
 end

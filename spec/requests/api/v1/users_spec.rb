@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "API v1 Users" , :type => :request do
+describe "Api::V1::Users" do
 
 
   let!(:user) { FactoryGirl.create(:user) }
@@ -85,4 +85,5 @@ describe "API v1 Users" , :type => :request do
       response.status.should eql(204)
     end
   end
+
 end
