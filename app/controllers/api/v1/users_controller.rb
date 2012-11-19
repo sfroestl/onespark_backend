@@ -34,12 +34,12 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def show_auth_user
-    render json: @auth_user
+    render json: @auth_user, :serializer => AuthUserSerializer
   end
 
   def update_auth_user
     if @auth_user.update_attributes(params[:user])
-      render json: @auth_user, status: :ok
+      render json: @auth_user, :serializer => AuthUserSerializer, status: :ok
     else
       render json: { errors: @auth_user.errors}, status: :unprocessable_entity
     end

@@ -14,7 +14,7 @@ describe "API v1 Users" , :type => :request do
     it "with basic_auth returns UserDTO as JSON" do
       get "#{user_url}", nil, basic_auth(user.username)
 
-      user_json = UserDTO.new(user.username, user.email, [], [], profile).to_json
+      user_json = AuthUserSerializer.new(user).to_json
       response.body.should eql(user_json)
       response.status.should eql(200)
     end

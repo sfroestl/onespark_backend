@@ -1,4 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id,:desc, :due_date, :title
-  
+  attributes :id, :desc, :due_date, :title
+  has_many :coworkers, :key => :contributors, :serializer => UserSerializer
+
 end

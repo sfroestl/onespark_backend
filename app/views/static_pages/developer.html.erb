@@ -55,6 +55,15 @@
         <li><a href="#delete_project">delete project</a></li>
       </ul>
     </li>
+    <li><a href="#tasks">tasks api</a>
+      <ul>
+        <li><a href="#get_tasks">get project tasks</a></li>
+        <li><a href="#get_task">get single task of project</a></li>
+        <li><a href="#create_task">create new task for project</a></li>
+        <li><a href="#update_task">update task</a></li>
+        <li><a href="#delete_task">delete task</a></li>
+      </ul>
+    </li>
 
     </ul>
   </nav>
@@ -346,7 +355,7 @@
 
     <article id="update_project">
         <h3>Update project</h3>
-        <code>PUT projects/:id</code>
+        <code>PUT /projects/:id</code>
         <pre><strong>Input</strong>
           <code>
   <strong>:id</strong> - required project id
@@ -375,7 +384,7 @@
 
     <article id="delete_project">
         <h3>Delete project</h3>
-        <code>DELETE projects/:id</code>
+        <code>DELETE /projects/:id</code>
         <pre><strong>Input</strong>
           <code>
   <strong>:id</strong> - required project id
@@ -391,9 +400,139 @@
         </pre>
     </article>
 
-    <hr/>
   </section>
 
+
+ <hr/>
+  <section id="tasks">
+    <h1>Tasks API</h1>
+    <hr/>
+
+    <article id="get_tasks">
+        <h3>Get project tasks</h3>
+        <code>GET /projects/:id/tasks</code>
+        <pre><strong>Response</strong>
+          <code class="language-javascript">
+  Status 200 OK
+  [
+    {
+      "id":7,
+      "title":"Testfertsch",
+      "desc":"testdescr",
+      "due_date":null
+    },
+    {
+      "id":5,
+      "title":"Test from post",
+      "desc":"Test from put",
+      "due_date":"2012-12-12T00:00:00+01:00"
+    }
+  ]
+          </code>
+        </pre>
+    </article>
+    <hr/>
+
+    <article id="get_task">
+        <h3>Get single task of project</h3>
+        <code>GET /projects/:id/tasks/:id</code>
+        <pre><strong>Response</strong>
+          <code class="language-javascript">
+  Status 200 OK
+  {
+    "id":2,
+    "title":"Testfertsch",
+    "desc":"testdescr",
+    "due_date":"2012-12-01T00:00:00+01:00",
+    "coworkers":[{
+        "username":"bob"
+      }],
+    "updated_at":"2012-10-26T12:04:50+02:00",
+    "owner":"luigi"
+  }
+          </code>
+        </pre>
+    </article>
+
+        <hr/>
+
+    <article id="create_task">
+        <h3>Create new taks</h3>
+        <code>POST /projects/:id/tasks</code>
+        <pre><strong>Input</strong>
+          <code>
+  <strong>title</strong> - required string
+  <strong>desc</strong> - optional string
+  <strong>due_date</strong> - optional string
+          </code>
+        </pre>
+        <pre><strong>Response</strong>
+          <code class="language-javascript">
+  Status 201 OK
+  {
+    "id":3,
+    "title":"Testtitle 2",
+    "desc":"Description",
+    "due_date":"2012-12-01T00:00:00+01:00",
+    "coworkers":[],
+    "updated_at":"2012-11-07T12:28:24+01:00",
+    "owner":"bob"
+  }
+          </code>
+        </pre>
+    </article>
+
+        <hr/>
+
+    <article id="update_task">
+        <h3>Update task</h3>
+        <code>PUT /projects/:id/tasks/:id</code>
+        <pre><strong>Input</strong>
+          <code>
+  <strong>:id</strong> - required project id
+  <strong>title</strong> - optional string
+  <strong>desc</strong> - optional string
+  <strong>due_date</strong> - optional string
+          </code>
+        </pre>
+        <pre><strong>Response</strong>
+          <code class="language-javascript">
+  Status 200 OK
+  {
+    "id":3,
+    "title":"Changed Title",
+    "desc":"Bobs new project",
+    "due_date":"2012-12-01T00:00:00+01:00",
+    "coworkers":[],
+    "updated_at":"2012-11-07T12:37:39+01:00",
+    "owner":"bob"
+  }
+          </code>
+        </pre>
+    </article>
+
+    <hr/>
+
+    <article id="delete_task">
+        <h3>Delete task</h3>
+        <code>DELETE /projects/:id/tasks/:id</code>
+        <pre><strong>Input</strong>
+          <code>
+  <strong>:id</strong> - required task id
+          </code>
+        </pre>
+        <pre><strong>Response</strong>
+          <code class="language-javascript">
+  Status 200 OK
+  {
+    "message":"Task deleted."
+  }
+          </code>
+        </pre>
+    </article>
+
+    <hr/>
+  </section>
 </div>
 
 
