@@ -1,3 +1,3 @@
 class ProfileSerializer < ActiveModel::Serializer
-  attributes :forename, :surname, :city, :about, :avatar_url
+  attributes :id, :forename, :surname, :city, :about, :avatar_url
 end
