@@ -57,5 +57,6 @@ class Api::V1::UsersController < Api::V1::ApiController
 
     def find_user
       @user = User.find_by_username(params[:id])
+      @user ||= User.find(params[:id])
     end
 end

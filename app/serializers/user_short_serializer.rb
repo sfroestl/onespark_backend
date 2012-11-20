@@ -1,4 +1,3 @@
 class UserShortSerializer < ActiveModel::Serializer
-  attributes :username, :email
-
+  attributes :username
 end

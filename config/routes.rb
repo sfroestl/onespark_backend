@@ -5,6 +5,7 @@ Onespark::Application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :show]
       resources :projects, except: [:edit, :new]
+      resources :tasks, except: [:index, :edit, :new]
 
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'

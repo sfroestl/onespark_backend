@@ -21,7 +21,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   respond_to :json
 
   def index
-    render json: Project.by_user(@auth_user), :each_serializer => ProjectShortSerializer
+    render json: Project.by_user(@auth_user), :each_serializer => ProjectSerializer
   end
 
   def show
