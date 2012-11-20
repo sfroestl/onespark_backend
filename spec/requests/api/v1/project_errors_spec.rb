@@ -31,7 +31,7 @@ describe "Api::V1::ProjectErrors" do
       get "#{projects_url}/#{project_u1.id}", nil, basic_auth(user2.username)
     end
     it "should return 403" do
-      response.status.should eql(403)
+      response.status.should eql(401)
     end
   end
 
@@ -58,7 +58,7 @@ describe "Api::V1::ProjectErrors" do
       end
 
       it "should return 403" do
-        response.status.should eql(403)
+        response.status.should eql(401)
       end
     end
   end
