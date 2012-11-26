@@ -22,6 +22,14 @@ FactoryGirl.define do
     user
   end
 
+  factory :task do
+    sequence(:title)  { |n| "Example task Nr #{n}" }
+    desc    "example task's description here"
+    due_date 3.days.from_now
+    project
+    creator
+  end
+
 
   factory :tasklist do
     title   "Milestone 1"

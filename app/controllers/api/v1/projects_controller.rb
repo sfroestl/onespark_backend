@@ -9,14 +9,14 @@
 
 
 class Api::V1::ProjectsController < Api::V1::ApiController
-  # basic authentification filter
+  # Basic authentification filter
   before_filter :authenticate_basic
 
   before_filter :find_project, only: [:show, :update, :destroy]
-  # permission filters see PermissionHelper
-  before_filter :has_delete_right?, only: [:destroy]
-  before_filter :has_view_right?, only: [:show]
-  before_filter :has_edit_right?, only: [:update]
+  # Permission filters see PermissionHelper
+  before_filter :has_delete_project_right?, only: [:destroy]
+  before_filter :has_view_project_right?, only: [:show]
+  before_filter :has_edit_project_right?, only: [:update]
 
   respond_to :json
 

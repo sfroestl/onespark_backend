@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :email
-  has_one :profile
+  has_one :profile, key: :profile_id, embed: :ids
 
   # Only authorized user properties
   has_many :projects, :key => :owned_project_ids, :embed => :ids
