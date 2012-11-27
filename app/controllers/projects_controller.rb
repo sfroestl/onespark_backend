@@ -13,9 +13,9 @@ class ProjectsController < ApplicationController
 
   before_filter :find_project, except: [:index, :create, :new]
 
-  before_filter :has_delete_project_right?, only: [:destroy]
-  before_filter :has_view_project_right?, only: [:show]
-  before_filter :has_edit_project_right?, only: [:update, :edit]
+  before_filter :has_delete_right?, only: [:destroy]
+  before_filter :has_view_right?, only: [:show]
+  before_filter :has_edit_right?, only: [:update, :edit]
 
 
   # GET /projects
