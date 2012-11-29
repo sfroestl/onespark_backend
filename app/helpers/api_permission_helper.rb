@@ -34,7 +34,7 @@ def has_view_project_right?
   end
 
   # Validates the users UPDATE right
-  def has_edit_projectter_right?
+  def has_edit_project_right?
     Rails.logger.info "--> filter has_edit_right?"
     if @project.writer?(@auth_user)
       Rails.logger.info "--> true"
