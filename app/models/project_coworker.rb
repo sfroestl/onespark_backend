@@ -15,7 +15,8 @@ class ProjectCoworker < ActiveRecord::Base
   validates :project_id, presence: true
   validates :user_id, presence: true
   validates :permission, presence: true, :inclusion => { :in => [0, 1, 2, 3] }
-
+  validates_uniqueness_of :user_id, :scope => :project_id
+  
   default_scope :order => 'created_at DESC'
 
   def self.exists?(project, user)
