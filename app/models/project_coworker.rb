@@ -16,7 +16,7 @@ class ProjectCoworker < ActiveRecord::Base
   validates :user_id, presence: true
   validates :permission, presence: true, :inclusion => { :in => [0, 1, 2, 3] }
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "Already in this project."
-  validates_exclusion_of :user_id, :in =>  lambda{|x| x.project ? [ x.project.user_id] : []  }, :message => "It's your project!"
+  validates_exclusion_of :user_id, :in =>  lambda{|x| [ x.project.user_id]  },:if => lambda{|x| x.project}, :message => "Can't be a coworker of own project."
   
   default_scope :order => 'created_at DESC'
 
