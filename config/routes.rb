@@ -7,7 +7,7 @@ Onespark::Application.routes.draw do
       resources :projects, except: [:edit, :new]
       resources :tasks, except: [:index, :edit, :new]
       resources :profiles, only: [:show, :update]
-
+      resources :project_coworkers, only: [:show, :update,:destroy,:create]
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'
       put '/user', to: 'users#update_auth_user'

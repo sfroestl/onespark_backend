@@ -15,7 +15,7 @@ gem "active_model_serializers", git: "git://github.com/rails-api/active_model_se
 # Changes for robin
 # gem 'thin', "1.3.1"
 # gem "eventmachine", "1.0.0.rc.1"
-
+gem "update_only_changed_attributes", git: "git://github.com/MRudolph/update_only_changed_attributes.git"
 # Server and production
   gem 'thin','1.5.0'
 
@@ -25,6 +25,8 @@ group :development do
   gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'nifty-generators'
+  gem 'pry-rails'
+
 end
 
 # Gems used only for assets and not required
