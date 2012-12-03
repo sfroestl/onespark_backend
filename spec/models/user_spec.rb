@@ -68,17 +68,6 @@ describe User do
     end
   end
 
-  describe "when email address is already taken" do
-      before do
-        user.save
-        user_with_same_email.email = user.email.upcase
-      end
-      it "user should not be valid" do
-        user_with_same_email.should_not be_valid
-        expect{user_with_same_email.save}.not_to change{User.count}
-      end
-  end
-
   describe "when password is not present" do
     before { user.password = user.password_confirmation = " " }
     it { should_not be_valid }
@@ -102,6 +91,17 @@ describe User do
   describe "return value of authenticate method" do
     before { user.save }
     it { should be_true }
+  end
+
+  describe "when email address is already taken" do
+    before do
+      user.save
+      user_with_same_email.email = user.email.upcase
+    end
+    it "user should not be valid" do
+      user_with_same_email.should_not be_valid
+      expect{user_with_same_email.save}.not_to change{User.count}
+    end
   end
 
   describe "remember token" do

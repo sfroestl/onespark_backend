@@ -21,9 +21,8 @@ class Api::V1::ApiController < ApplicationController
     def authenticate_basic
       Rails.logger.info ">> ApiController: Authenticate filter for Basic Auth"
       authenticate_or_request_with_http_basic do |username, password|
-        # you probably want to guard against a wrong username, and encrypt the
-        # password but this is the idea.
-        user = User.find_by_username(username)
+        # Finds the user by username and checks authentication
+        user = User.find_by_username(username.downcase)
         if user && user.authenticate(password)
           Rails.logger.info "--> Request: #{request.method} #{request.url}"
           Rails.logger.info "--> Basic auth params: #{username}"
