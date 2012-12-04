@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721114035) do
+ActiveRecord::Schema.define(:version => 20121204174951) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -105,12 +105,14 @@ ActiveRecord::Schema.define(:version => 20120721114035) do
     t.datetime "due_date"
     t.integer  "creator_id"
     t.integer  "worker_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "tasklist_id"
-    t.boolean  "completed"
+    t.boolean  "completed",       :default => false
     t.datetime "completed_at"
     t.integer  "completed_by"
+    t.float    "estimated_hours"
+    t.float    "worked_hours"
   end
 
   add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"

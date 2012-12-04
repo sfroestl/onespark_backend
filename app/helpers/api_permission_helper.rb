@@ -8,7 +8,7 @@
 
 module ApiPermissionHelper
 
-def has_view_project_right?
+  def has_view_project_right?
     Rails.logger.info "--> filter has_view_right?"
     if @project.reader?(@auth_user)
       Rails.logger.info "--> true"
@@ -45,12 +45,30 @@ def has_view_project_right?
       forbidden
     end
   end
-  
+
 
   def has_change_project_coworkers_right?
     Rails.logger.info "--> filter has_change_project_coworkers_right?"
     if @project.admin?(@auth_user)
       Rails.logger.info "--> true"
+      true
+    else
+      # See ApiErrorHelper
+      Rails.logger.info "--> false"
+      forbidden
+    end
+  end
+
+  def has_change_task_right?
+    Rails.logger.info "--> filter has_change_task_right?"
+
+    if @project.admin?(@auth_user)
+      # user is admin
+      Rails.logger.info "--> true (User is admin)"
+      true
+    elsif @project.writer?(@auth_user) && @task.worker == @auth_user
+      # user is writer and worker of task
+      Rails.logger.info "--> true (User is writer & worker)"
       true
     else
       # See ApiErrorHelper

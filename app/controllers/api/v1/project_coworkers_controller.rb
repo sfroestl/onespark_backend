@@ -7,7 +7,7 @@ class Api::V1::ProjectCoworkersController < Api::V1::ApiController
 
   # Permission filters see ApiPermissionHelper
   before_filter :has_view_project_right?, only: [:show]
-  before_filter :has_change_project_coworkers_right?, only: [:create,:destroy,:update]
+  before_filter :has_change_project_coworkers_right?, only: [:create, :destroy, :update]
   respond_to :json
 
   def show
@@ -44,7 +44,7 @@ class Api::V1::ProjectCoworkersController < Api::V1::ApiController
 
   def find_project_coworker
     Rails.logger.info "--> find coworker"
-    @coworker = ProjectCoworker.find(params[:id],:include => :project)
+    @coworker = ProjectCoworker.find(params[:id], :include => :project)
     @project = @coworker.try(:project)
     !!(@coworker && @project) || not_found  # See ApiErrorHelper
   end

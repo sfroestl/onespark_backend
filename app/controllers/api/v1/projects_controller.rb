@@ -13,7 +13,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   before_filter :authenticate_basic
 
   before_filter :find_project, only: [:show, :update, :destroy]
-  # Permission filters see PermissionHelper
+  # Permission filters see ApiPermissionHelper
   before_filter :has_delete_project_right?, only: [:destroy]
   before_filter :has_view_project_right?, only: [:show]
   before_filter :has_edit_project_right?, only: [:update]
