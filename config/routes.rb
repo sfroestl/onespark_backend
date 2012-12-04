@@ -1,9 +1,10 @@
 Onespark::Application.routes.draw do
 
   ################# Routes for API JSON #################
-  #scope module: :api, defaults: { format: 'json' } do
+  # scope module: :api, defaults: { format: 'json' } do
   namespace :api, defaults: { format: 'json' } do
-    scope module: :v1 do
+    # scope module: :v1 do
+    namespace :v1 do
       resources :users, only: [:create, :show]
       resources :projects, except: [:edit, :new]
       resources :tasks, except: [:edit, :new]
