@@ -47,8 +47,9 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def destroy
-    Project.destroy(params[:id])
-    render status: :ok
+    if Project.destroy(params[:id])
+      respond_with status: :ok
+    end
   end
 
 

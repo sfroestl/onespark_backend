@@ -48,8 +48,9 @@ class Api::V1::TasksController < Api::V1::ApiController
   end
 
   def destroy
-    Task.destroy(params[:id])
-    render status: :ok
+    if Task.destroy(params[:id])
+      respond_with status: :ok
+    end
   end
 
 
