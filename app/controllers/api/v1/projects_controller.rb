@@ -48,7 +48,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
 
   def destroy
     Project.destroy(params[:id])
-    render json: { message: "Project deleted." }, status: :ok
+    render status: :ok
   end
 
 

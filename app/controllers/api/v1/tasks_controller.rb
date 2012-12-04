@@ -49,7 +49,7 @@ class Api::V1::TasksController < Api::V1::ApiController
 
   def destroy
     Task.destroy(params[:id])
-    render json: { message: "Task deleted." }, status: :ok
+    render status: :ok
   end
 
 
