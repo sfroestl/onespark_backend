@@ -7,7 +7,7 @@ class Api::V1::TasksController < Api::V1::ApiController
 
   # Permission filters see ApiPermissionHelper
   before_filter :has_change_task_right?, only: [:update, :destroy]
-  before_filter :has_view_project_right?, only: [:show, :index]
+  before_filter :has_view_project_right?, only: [:show] #TODO filter index right
   before_filter :has_edit_project_right?, only: [:create]
 
   respond_to :json

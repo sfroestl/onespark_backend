@@ -1,5 +1,8 @@
 class ExtendTasks < ActiveRecord::Migration
   def up
+    remove_column :tasks, :completed, :boolean
+    remove_column :tasks, :completed_at, :datetime
+    remove_column :tasks, :completed_by, :integer
     add_column :tasks, :completed, :boolean, default: false
     add_column :tasks, :completed_at, :datetime
     add_column :tasks, :completed_by, :integer
