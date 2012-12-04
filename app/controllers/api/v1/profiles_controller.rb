@@ -14,7 +14,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   respond_to :json
 
   def update_with_user
-     if @auth_user.profile.update_attributes(params[:profile])
+     if @auth_user.profile.update_only_changed_attributes(params[:profile])
       render json: @auth_user, :serializer => AuthUserSerializer, status: :ok
     else
       render json: { errors: @auth_user.profile.errors}, status: :unprocessable_entity
@@ -24,7 +24,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   def update
     profile = Profile.find(params[:id])
     if profile.user.id == @auth_user.id
-      if @auth_user.profile.update_attributes(params[:profile])
+      if @auth_user.profile.update_only_changed_attributes(params[:profile])
         render json: @auth_user.profile, :serializer => ProfileSerializer, status: :ok
       else
         render json: { errors: @auth_user.profile.errors }, status: :unprocessable_entity

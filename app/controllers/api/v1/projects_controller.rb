@@ -21,7 +21,13 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   respond_to :json
 
   def index
-    render json: Project.by_user(@auth_user), :each_serializer => ProjectSerializer
+    if params[:ids]
+      Rails.logger.info "--> ProjectsController#index with ids query: #{params[:ids]}"
+      ids = params[:ids].split(',')
+      render json: Project.find(ids), :each_serializer => ProjectSerializer
+    else
+      render json: Project.by_user(@auth_user), :each_serializer => ProjectSerializer
+    end
   end
 
   def show
@@ -39,7 +45,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def update
-    if @project.update_attributes(params[:project])
+    if @project.update_only_changed_attributes(params[:project])
       render json: @project, status: :ok
     else
       render json: { errors: @project.errors}, status: :unprocessable_entity
@@ -47,9 +53,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def destroy
-    if Project.destroy(params[:id])
-      render json:nil , status: :ok
-    end
+    respond_with Project.destroy(params[:id])
   end
 
 
