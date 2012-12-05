@@ -34,7 +34,7 @@ describe "Api::V1::Tasks" do
       post "#{tasks_url}", { task: { title: "#{title}", desc: desc, project_id: project.id } }, basic_auth(user.username)
     end
 
-    it "returns 201" do
+    it "responds with  201" do
       response.status.should eql(201)
     end
 
@@ -58,7 +58,7 @@ describe "Api::V1::Tasks" do
 
     subject { response }
 
-    it "returns 201" do
+    it "responds with  201" do
       status.should eql(200)
     end
 
@@ -78,10 +78,7 @@ describe "Api::V1::Tasks" do
     end
 
     it "responds with 204" do
-      response.status.should eql(200)
-    end
-    it "responds with message" do
-      response.body.should include 'Task deleted.'
+      response.status.should eql(204)
     end
   end
 end

@@ -27,7 +27,7 @@ describe "Api::V1::Users" do
     describe "with valid information" do
       before do
         post "#{users_url}",
-          user: { username: new_user.username, email: new_user.email, password: 'foobar', password_confirmation: 'foobar' },
+          { user: { username: new_user.username, email: new_user.email, password: 'foobar', password_confirmation: 'foobar' }},
           :format => :json
       end
 
@@ -44,10 +44,10 @@ describe "Api::V1::Users" do
   end
 
   describe "updated users email adress" do
-    new_email = "test@with_put.com"
+    new_email = "test@with-put.com"
 
     before do
-      put "#{user_url}", { email: new_email }, basic_auth(user.username)
+      put "#{user_url}", { user: { email: new_email }}, basic_auth(user.username)
     end
 
     it "should respond with 200" do
@@ -63,7 +63,7 @@ describe "Api::V1::Users" do
     surname = "Geil"
 
     before do
-      put "#{profile_url}", { forename: forename, surname: surname }, basic_auth(user.username)
+      put "#{profile_url}", { profile: { forename: forename, surname: surname }}, basic_auth(user.username)
     end
 
     it "should respond with 200" do

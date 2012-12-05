@@ -61,9 +61,6 @@ class TasksController < ApplicationController
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
 
-    # set incompleted
-    params[:task][:completed] = false
-
     Rails.logger.info ">> Task Controller new Task"
     Rails.logger.info "#{current_user.username}"
     Rails.logger.info "#{params[:task]}"

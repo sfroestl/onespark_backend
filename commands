@@ -31,3 +31,13 @@ rvmsudo thin config -C /etc/thin/myapp.yml -c /var/rails/myapp --servers 2 -p 50
 
 git checkout -b < new_branch > origin/< new_branch >
 git push origin < new_branch >
+
+
+
+
+#### GITHUB
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/sfroestl/selfmade-erfolg.git
+git push -u origin master

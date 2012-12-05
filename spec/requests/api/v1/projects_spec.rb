@@ -52,7 +52,7 @@ describe "Api::V1::Projects" do
 
   describe "post new project" do
     before do
-      post "#{projects_url}", {project: { title: "new project", due_date: Date.tomorrow }}, basic_auth(user.username)
+      post "#{projects_url}", { project: { title: "new project", due_date: Date.tomorrow }}, basic_auth(user.username)
     end
 
     it "should respond with 201" do
@@ -67,7 +67,7 @@ describe "Api::V1::Projects" do
   describe "updated project" do
 
     before do
-      put "#{projects_url}/#{project2_u1.id}", { desc: "new desc", due_date: Date.tomorrow }, basic_auth(user.username)
+      put "#{projects_url}/#{project2_u1.id}", { project: { desc: "new desc", due_date: Date.tomorrow }}, basic_auth(user.username)
     end
 
     it "should respond with 200" do
@@ -86,11 +86,8 @@ describe "Api::V1::Projects" do
     end
 
     it "should respond with 204" do
-      response.status.should eql(200)
+      response.status.should eql(204)
       Project.count.should eql(2)
-    end
-    it "should respond with message" do
-      response.body.should include 'Project deleted'
     end
   end
 end

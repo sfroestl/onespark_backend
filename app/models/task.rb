@@ -7,7 +7,8 @@
 
 class Task < ActiveRecord::Base
   attr_accessible :desc, :due_date, :tasklist_id, :tasklist, :milestone_id, :project_id,
-                  :title, :creator, :worker, :worker_id, :completed, :completed_at, :completed_by
+                  :title, :creator, :worker, :worker_id, :completed, :completed_by, :completed_at,
+                  :estimated_hours, :worked_hours
 
   belongs_to :project
   belongs_to :milestone
@@ -19,6 +20,8 @@ class Task < ActiveRecord::Base
 	validates :project_id, presence: true
 	validates :creator_id, presence: true
 	validates :title, presence: true
+
+
 
 	default_scope :order => 'due_date DESC'
 
