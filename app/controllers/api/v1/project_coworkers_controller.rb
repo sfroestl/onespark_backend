@@ -18,7 +18,7 @@ class Api::V1::ProjectCoworkersController < Api::V1::ApiController
 
     new_coworker_raw = params[:project_coworker]
     new_coworker_raw.delete(:project_id) #remove project_id after searching, as it is not mass-assginable
-	new_coworker = @project.project_coworkers.build(new_coworker_raw)	
+    new_coworker = @project.project_coworkers.build(new_coworker_raw)
     if new_coworker.save
       render json: new_coworker, status: :created
     else

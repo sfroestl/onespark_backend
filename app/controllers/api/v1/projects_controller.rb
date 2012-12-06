@@ -35,7 +35,13 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def create
-    new_project = @auth_user.projects.build(params[:project])
+    new_project_raw = params[:project] || {}
+
+    if new_project_raw[:owner_id]
+      Rails.logger.info "--> owner deleted"
+      new_project_raw.delete(:owner_id) #remove owner_id after searching, as it is not mass-assginable
+    end
+    new_project = @auth_user.projects.build(new_project_raw)
 
     if new_project.save
       render json: new_project, status: :created

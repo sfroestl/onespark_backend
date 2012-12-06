@@ -16,7 +16,15 @@ class Api::V1::TasksController < Api::V1::ApiController
     if params[:ids]
       Rails.logger.info "--> TasksController#index with ids query: #{params[:ids]}"
       ids = params[:ids].split(',')
-      render json: Task.find(ids), :each_serializer => TaskSerializer
+      tasks = []
+      ##
+      ids.each do |id|
+        task = Task.find(id)
+        if task.project.reader?(@auth_user)
+          tasks << task
+        end
+      end
+      render json: tasks, :each_serializer => TaskSerializer
     else
       render json: Task.find_all_by_worker_id(@auth_user.id), :each_serializer => TaskSerializer
     end
