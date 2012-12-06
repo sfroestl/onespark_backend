@@ -20,6 +20,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :topics, :dependent => :destroy
   has_many :postings, :dependent => :destroy
+	has_many :svn_repositories, class_name: "Tools::SvnRepository", :dependent => :destroy
 
   belongs_to :user
   has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy

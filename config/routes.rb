@@ -53,6 +53,7 @@ Onespark::Application.routes.draw do
     resources :topics
     resources :coworkers, :controller => 'project_coworkers'
     resources :tasks, only: [:show, :index], to: 'tasklists#index'
+		resources :svn_repositories, :controller => 'tools/svn_repositories'
   end
   # resources :milestones, except: [:index]
   # resources :profiles , only: [:show, :index]

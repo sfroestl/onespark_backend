@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721114035) do
+ActiveRecord::Schema.define(:version => 20121203155817) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -139,6 +139,12 @@ ActiveRecord::Schema.define(:version => 20120721114035) do
 
   add_index "tools_github_repositories", ["project_id"], :name => "index_tools_github_repositories_on_project_id"
   add_index "tools_github_repositories", ["user_id"], :name => "index_tools_github_repositories_on_user_id"
+
+  create_table "tools_svn_repositories", :force => true do |t|
+    t.string  "title"
+    t.string  "url"
+    t.integer "project_id"
+  end
 
   create_table "topics", :force => true do |t|
     t.integer  "creator_id"

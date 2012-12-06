@@ -1,0 +1,32 @@
+<%= form_for [@project, @svn_repository], :url => project_svn_repository_path(@project) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+    <%= f.label :title,  'Title' %>
+    <%= f.text_field :title, placeholder:"Name of the Repository", :autofocus => true, :tabindex => 2 %>
+  </fieldset>
+  <div  class="details">
+    <fieldset>
+      <%= f.label :url,  'URL' %>
+      <%= f.text_field :url, placeholder:"ssh+svn://www.svn-repository.de", :tabindex => 3 %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :ssh_username,  'SSH Username' %>
+      <%= f.text_field :ssh_username, placeholder:"your SSH username", :tabindex => 3 %>
+    </fieldset> 
+    <fieldset>
+      <%= f.label :ssh_password,  'SSH Password' %>
+      <%= f.password_field :ssh_password, :tabindex => 5 %>
+    </fieldset>
+    <fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit :tabindex => 6%>
+    <% if params[:action].eql? 'edit' or params[:action].eql? 'update' or params[:action].eql? 'create' %>
+        <%= link_to 'Cancel', project_svn_repositories_path(@project), class: "cancelButton" %>
+      <% else %>
+        <a class="cancelButton">Cancel</a>
+      <% end %>
+  <fieldset>
+  </div>
+<% end %>
+
