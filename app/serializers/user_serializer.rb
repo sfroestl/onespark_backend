@@ -4,7 +4,7 @@ class UserSerializer < ActiveModel::Serializer
 
   # Only authorized user properties
   has_many :projects, :key => :owned_project_ids, :embed => :ids
-  #has_many :project_permissions, :key => :collaborated_project_ids, :embed => :ids
+  has_many :project_permissions, :key => :collaborated_project_ids, :embed => :ids
   has_many :project_coworkers, :key => :project_coworker_ids, :embed => :ids
   has_many :friends, :key => :contact_ids, :embed => :ids #, :serializer => UserShortSerializer
 
