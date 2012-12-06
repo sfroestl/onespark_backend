@@ -19,6 +19,11 @@ gem "active_model_serializers", git: "git://github.com/rails-api/active_model_se
 # Server and production
   gem 'thin','1.5.0'
 
+# SVN
+	gem 'rscm'
+	gem 'ftools' # required by rscm
+	gem 'rails_uri_validator', '~> 0.1.2'
+
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'

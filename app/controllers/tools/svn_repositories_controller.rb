@@ -1,4 +1,5 @@
 class Tools::SvnRepositoriesController < ApplicationController
+	require 'rscm'
 	layout 'project'
 
   before_filter :find_project
