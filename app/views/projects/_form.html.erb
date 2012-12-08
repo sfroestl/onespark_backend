@@ -8,7 +8,7 @@
     <div  class="details">
       <fieldset>
         <%= f.label :due_date,  'Due Date' %>
-        <%= f.date_select :due_date, {:include_blank => true} %>
+        <%= f.text_field :due_date, placeholder:"When is it due?", :tabindex => 3 %>
       </fieldset>
       <fieldset>
         <%= f.label :desc,  'Description' %>

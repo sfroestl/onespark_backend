@@ -10,14 +10,14 @@
   </fieldset>
     <fieldset>
       <%= f.label :due_date,  'Due Date' %>
-      <%= f.text_field :due_date, placeholder:"When is it due?"%>
+      <%= f.date_select :due_date, {:include_blank => true} %>
     </fieldset>
     <fieldset>
       <%= f.label :worker,  'Coworker' %>
       <% coworkers = Array.new(@project.coworkers) << @project.user %>
       <% selected = @task.worker.username if @task.worker %>
       <%= f.select :worker, options_from_collection_for_select(coworkers, 'username', 'username', selected: selected), { :include_blank => "- none -" } %>
-    </fieldset> 
+    </fieldset>
 
     <fieldset>
       <%= f.label :tasklist_id,  'Tasklist' %>
