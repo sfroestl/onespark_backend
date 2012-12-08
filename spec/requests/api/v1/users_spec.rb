@@ -60,7 +60,7 @@ describe "Api::V1::Users" do
 
   describe "updated users profile" do
     forename = "Bosse"
-    surname = "Geil"
+    surname = "the small"
 
     before do
       put "#{profile_url}", { profile: { forename: forename, surname: surname }}, basic_auth(user.username)

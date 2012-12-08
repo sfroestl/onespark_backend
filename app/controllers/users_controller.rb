@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
       respond_to do |format|
         if @user.save
-          Rails.logger.info " WRONG USER"
           @user.create_profile
           sign_in @user
           format.html { redirect_to projects_path, :flash => { :success => 'Welcome to the One Spark!' }}

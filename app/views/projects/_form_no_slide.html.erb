@@ -5,7 +5,6 @@
       <%= f.label :title,  'Title of Project' %>
       <%= f.text_field :title, placeholder:"What's your idea's title?", :autofocus => true, :tabindex => 2 %>
     </fieldset>
-    <div  class="details">
       <fieldset>
         <%= f.label :due_date,  'Due Date' %>
         <%= f.date_select :due_date, {:include_blank => true} %>
@@ -24,6 +23,5 @@
         <a class="cancelButton">Cancel</a>
       <% end %>
       </fieldset>
-    </div>
   </div>
 <% end %>
