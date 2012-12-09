@@ -22,16 +22,16 @@ describe Tools::SvnRepository do
 		end
 
 		describe "with no valid url" do
-			it "should raise an exception" do
-				svn_repository_url_fail = FactoryGirl.create(:svn_repository, url: "someCoolURL") 
+			it "should not validate" do
+				should_not allow_value('someCoolURL').for(:url)
 			end
 		end
-		
+
 	end
 
-  describe "when SVN Repo is deleted" do
-    it "should destroy SVN Repo" 
-  end
+	describe "when SVN Repo is deleted" do
+		it "should destroy SVN Repo" 
+	end
 
 	describe "when requesting SVN log" do #log
 
@@ -45,13 +45,11 @@ describe Tools::SvnRepository do
 			before { revisions = svn_repository.log(850) }
 
 			it "the first Revision is RevisionNr +1" do
-				#revisions = svn_repository.log(850)
 				revisions[1].identifier eq(851)
 			end
-				
+
 			it "get 10 last revisions back (851-860)" do
 				# currently, Rev860 is the last
-				#revisions = svn_repository.log(850)
 				revisions.length.should eq(10)
 			end
 		end
@@ -59,19 +57,28 @@ describe Tools::SvnRepository do
 		describe "with UTC" do #Universal Time Coordinated
 		end
 
-		describe "with an svn account" do
+	end
 
-			describe "and svn username only" do
-				it "should raise an exception" do
-					svn_repository.svn_username = "robem"
-					expect { svn_repository.log }.should raise_exception(ArgumentError)
-				end
+	describe "when creating an SVN repository" do
+
+		describe "and svn username only" do
+			it "should not validate the svn username" do
+				pending
+				#FactoryGirl.create(:svn_repository, svn_username: "robem").should_not be_valid
 			end
+		end
 
-			describe "and svn password only" do
-				it "should raise an exception"
+		describe "and svn password only" do
+			it "should not validate the svn password" do
+				pending
+				#FactoryGirl.create(:svn_repository, svn_password: "secret").should_not be_valid
 			end
+		end
 
+		describe "and svn password and username are given" do
+			it "should be valid" do
+				FactoryGirl.create(:svn_repository, svn_username: "robem",svn_password: "secret").should be_valid
+			end
 		end
 
 	end
