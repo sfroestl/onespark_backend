@@ -10,6 +10,30 @@ class Api::V1::ProjectCoworkersController < Api::V1::ApiController
   before_filter :has_change_project_coworkers_right?, only: [:create, :destroy, :update]
   respond_to :json
 
+
+  def index
+    if params[:ids]
+      Rails.logger.info "--> ProjectCoworkersController#index with ids query: #{params[:ids]}"
+      ids = params[:ids].split(',')
+
+
+      project_coworkers = ProjectCoworker.find(ids)
+      coworkers = project_coworkers.find_all { |coworker| coworker.project.reader?(@auth_user) }
+
+      render json: coworkers
+      # ids.each do |id|
+      #   coworker = ProjectCoworker.find(id)
+      #   ## important: PermissionFilter!
+      #   if coworker.project.reader?(@auth_user)
+      #     project_coworkers << coworker
+      #   end
+      # end
+      # render json: project_coworkers
+    else
+      respond_with nil, status: :method_not_allowed
+    end
+  end
+
   def show
     render json: @coworker
   end

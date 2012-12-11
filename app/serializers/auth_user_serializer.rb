@@ -4,5 +4,5 @@ class AuthUserSerializer < ActiveModel::Serializer
 
   has_many :projects, :key => :owned_project_ids, :embed => :ids
   has_many :project_permissions, :key => :collaborated_project_ids, :embed => :ids
-  has_many :friends, :key => :contact_ids, :embed => :ids #, :serializer => UserShortSerializer
+  has_many :friendships, :key => :contact_ids, :embed => :ids
 end

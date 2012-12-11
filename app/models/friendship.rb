@@ -12,6 +12,8 @@ class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, :class_name => "User"
   validates_presence_of :user_id, :friend_id, :status
+  validates_uniqueness_of :friend_id, :scope => :user_id, :message => "Already requested this user."
+  validates_uniqueness_of :user_id, :scope => :friend_id, :message => "Already requested this user."
 
   # Return true if the users are (possibly pending) friends.
   def self.exists?(user, friend)
@@ -22,8 +24,8 @@ class Friendship < ActiveRecord::Base
   def self.request(user, friend)
     unless user.id == friend.id or Friendship.exists?(user, friend)
       transaction do
+        friend.friendships.create(friend_id: user.id, status: 'requested')
       	user.friendships.create(friend_id: friend.id, status: 'pending')
-      	friend.friendships.create(friend_id: user.id, status: 'requested')
         # create(:user => user, :friend => friend, :status => 'pending')
         # create(:user => friend, :friend => user, :status => 'requested')
       end

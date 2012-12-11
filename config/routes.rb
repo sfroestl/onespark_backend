@@ -6,11 +6,11 @@ Onespark::Application.routes.draw do
     # scope module: :v1 do
     namespace :v1 do
       resources :users, only: [:create, :show]
-      resources :projects, except: [:edit, :new]
-      resources :tasks, except: [:edit, :new]
+      resources :projects, only: [:index, :show, :create, :update, :destroy]
+      resources :tasks, only: [:index, :show, :create, :update, :destroy]
       resources :profiles, only: [:show, :update]
-      resources :project_coworkers, only: [:show, :update,:destroy,:create]
-
+      resources :project_coworkers, only: [:index, :show, :create, :update, :destroy]
+      resources :contacts, only: [:index, :show, :create, :update, :destroy]
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'
       put '/user', to: 'users#update_auth_user'
