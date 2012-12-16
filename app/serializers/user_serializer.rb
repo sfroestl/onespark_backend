@@ -24,7 +24,7 @@ class UserSerializer < ActiveModel::Serializer
     scope == object
   end
 
-  def include_friends?
+  def include_friendships?
     scope == object
   end
 end

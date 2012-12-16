@@ -29,39 +29,58 @@
   </div>
 
      <!-- DIE NAVIGATION -->
-  <nav>
+  <nav id="top">
     <ul>
-    <li><a href="#users">Genereal</a>
+    <li><a href="#general">Genereal</a>
       <ul>
         <li><a href="#uri">URI API v1</a></li>
         <li><a href="#basic_auth">Basic Authentification</a></li>
       </ul>
-    <li><a href="#users">users api</a>
+    <li><a href="#users">Users API</a>
       <ul>
-        <li><a href="#get_user">get singel user</a></li>
-        <li><a href="#get_auth_user">get authenticated user</a></li>
-        <li><a href="#create_user">create new user</a></li>
-        <li><a href="#update_user">update authenticated user</a></li>
-        <li><a href="#update_user_profile">update authenticated users profile</a></li>
-        <li><a href="#delete_user">delete authenticated user</a></li>
+        <li><a href="#get_user">Get singel user</a></li>
+        <li><a href="#get_auth_user">Get auth user</a></li>
+        <li><a href="#create_user">Create new user</a></li>
+        <li><a href="#update_user">Update auth user</a></li>
+        <li><a href="#delete_user">Delete auth user</a></li>
       </ul>
     </li>
-    <li><a href="#projects">projects api</a>
+    <li><a href="#profiles">Profiles API</a>
       <ul>
-        <li><a href="#get_projects">get users projects</a></li>
-        <li><a href="#get_project">get single project</a></li>
-        <li><a href="#create_project">create new project</a></li>
-        <li><a href="#update_project">update project</a></li>
-        <li><a href="#delete_project">delete project</a></li>
+        <li><a href="#get_profile">Get users profile</a></li>
+        <li><a href="#update_profile">Update users profile</a></li>
       </ul>
     </li>
-    <li><a href="#tasks">tasks api</a>
+    <li><a href="#contacts">Contacts API</a>
       <ul>
-        <li><a href="#get_tasks">get project tasks</a></li>
-        <li><a href="#get_task">get single task of project</a></li>
-        <li><a href="#create_task">create new task for project</a></li>
-        <li><a href="#update_task">update task</a></li>
-        <li><a href="#delete_task">delete task</a></li>
+        <li><a href="#get_contact">Get contact</a></li>
+        <li><a href="#create_contact">Create contact</a></li>
+        <li><a href="#delete_contact">Delete contact</a></li>
+      </ul>
+    </li>
+    <li><a href="#projects">Projects API</a>
+      <ul>
+        <li><a href="#get_project">Get single project</a></li>
+        <li><a href="#create_project">Create new project</a></li>
+        <li><a href="#update_project">Update project</a></li>
+        <li><a href="#delete_project">Delete project</a></li>
+      </ul>
+    </li>
+    <li><a href="#project-coworkers">Project Coworkers API</a>
+      <ul>
+        <li><a href="#get_project_coworker">Get project coworker</a></li>
+        <li><a href="#create_project_coworker">Create project coworker</a></li>
+        <li><a href="#update_project_coworker">Update project coworker</a></li>
+        <li><a href="#delete_project_coworker">Delete project coworker</a></li>
+      </ul>
+    </li>
+    <li><a href="#tasks">Tasks API</a>
+      <ul>
+        <li><a href="#get_tasks">Get project tasks</a></li>
+        <li><a href="#get_task">Get single task of project</a></li>
+        <li><a href="#create_task">Create new task for project</a></li>
+        <li><a href="#update_task">Update task</a></li>
+        <li><a href="#delete_task">Delete task</a></li>
       </ul>
     </li>
 
@@ -73,306 +92,308 @@
 
 
 <div id="main">
-  <section id="users">
+
+  <!-- ////////// General ///////// -->
+  <section id="general">
     <h1>General</h1>
-    <hr/>
 
     <article id="uri">
-        <h3>URI API v1</h3>
+
+        <h2>URI API v1</h2>
         <pre><code>http://api.onespark.de/api/v1</code></pre>
     </article>
 
     <article id="basic_auth">
-        <h3>Basic Authentification</h3>
+        <h2>Basic Authentification </h2>
         <pre><code>HEADER "Authorization: Basic username:password (base64 encoded)"</code></pre>
     </article>
-    <hr/>
   </section>
 
+  <!-- ////////// Users ///////// -->
   <section id="users">
     <h1>Users API</h1>
-    <hr/>
+
+  <!-- ////////// Get User ///////// -->
       <article id="get_user">
-        <h3>Get a single user</h3>
-        <code>GET /users/:username</code>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
+        <h2>Get a user</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /users/:username</code></pre>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
 {
-    "user": {
-        "username": "luigi",
-        "email": "luigi@testx.de",
-        "profile": {
-            "forename": "Luigi",
-            "surname": "",
-            "city": "Mario World",
-            "about": "",
-            "avatar_url": null
-        }
-    }
-}
-          </code>
-        </pre>
+  "user":
+  {
+    "id":1,
+    "username":"bob",
+    "email":"bob@testme.com",
+    "profile_id":1,
+  }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
-    <hr/>
 
+  <!-- ////////// Get Auth User ///////// -->
     <article id="get_auth_user">
-        <h3>Get the authenticated user</h3>
-        <code>GET /user</code>
-        <p>Returns the authenticated user based on the authentication credentials</p>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-{
-    "auth_user": {
-        "username": "bob",
-        "email": "bob@me.com",
-        "projects": [{
-            "id": 1,
-            "due_date": null,
-            "title": "Testfertsch"
-        }, {
-            "id": 2,
-            "due_date": "2012-11-01T00:00:00+01:00",
-            "title": "Start learning ember.js"
-        }, {
-            "id": 5,
-            "due_date": "2012-12-24T00:00:00+01:00",
-            "title": "johnnys test"
-        }],
-        "profile": {
-            "forename": "Bob",
-            "surname": "Maria",
-            "city": "Buxdehude",
-            "about": "Der Titel dieses Artikels ist mehrdeutig",
-            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
-        },
-        "contacts": [{
-            "username": "luigi",
-            "email": "luigi@testx.de"
-        }]
-    }
-}
-          </code>
-        </pre>
-    </article>
-    <hr/>
+        <h2>Get the auth user</h2>
+        <p>Returns the auth user based on the auth credentials</p>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /user || Get /users/:your_id</pre></code>
 
+        <p><strong>Request</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+  "user":
+  {
+    "id":1,
+    "username":"bob",
+    "email":"bob@testme.com",
+    "profile_id":1,
+    "owned_project_ids":[76, 6, 61, 82, 92, 123, 120, 119, 78, 85],"collaborated_project_ids":[124,8],"project_coworker_ids":[55, 7],"contact_ids":[4, 9]
+  }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!--- //////////// Create User ///////////////// -->
     <article id="create_user">
-      <h3>Create a new user</h3>
-        <code>POST /users</code>
-        <pre><strong>Input</strong>
-          <code>
+        <h2>Create a User</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /users </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"user":{ :params }}
   <strong>username</strong> - required string
   <strong>password</strong> - required string
   <strong>password_confirmation</strong> - required string
   <strong>email</strong> - required string
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-        <code class="language-javascript">
-  Status 201 CREATED
-  {
-    "username": "luigi",
-    "email": "luigi@me.com",
-    "projects": [],
-    "contacts": [],
-    "profile": []
-  }
-        </code>
-      </pre>
-
+          </code></pre>
+        <p><strong>Response</strong></p>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
+{
+    "user": {
+        "id": 17,
+        "username": "wuppi123",
+        "email": "test@onespark.de",
+        "profile_id": 14,
+        "contact_ids": []
+    }
+}
+        </code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
-    <hr/>
 
+
+<!--- //////////// Update User ///////////////// -->
     <article id="update_user">
-      <h3>Update the authenticated user</h3>
-        <code>PUT /user</code>
-        <pre><strong>Input</strong>
-          <code>
+      <h2>Update the auth user</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>PUT /user</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"user":{ :params }}
   <strong>username</strong> - optional string
   <strong>email</strong> - optional string
           </code>
         </pre>
-        <pre><strong>Response</strong>
-          <p>Returns the changed user with profile</p>
-        <code class="language-javascript">
-  Status 200
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
 {
-    "auth_user": {
-        "username": "bob",
-        "email": "bob@testme.com",
-        "projects": [{
-            "id": 1,
-            "due_date": null,
-            "title": "Testfertsch"
-        }, {
-            "id": 2,
-            "due_date": "2012-11-01T00:00:00+01:00",
-            "title": "Start learning ember.js"
-        }, {
-            "id": 5,
-            "due_date": "2012-12-24T00:00:00+01:00",
-            "title": "johnnys test"
-        }],
-        "profile": {
-            "forename": "Bob",
-            "surname": "Maria",
-            "city": "Buxdehude",
-            "about": "Der Titel dieses Artikels ist mehrdeutig",
-            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
-        },
-        "contacts": [{
-            "username": "luigi",
-            "email": "luigi@testx.de"
-        }]
+  "user":
+  {
+    "id":1,
+    "username":"bob",
+    "email":"bob@testme.com",
+    "profile_id":1,
+    "owned_project_ids":[76, 6, 61, 82, 92, 123, 120, 119, 78, 85],"collaborated_project_ids":[124,8],"project_coworker_ids":[55, 7],"contact_ids":[4, 9]
+  }
+}</code></pre>
+    </article>
+
+<!--- //////////// Delete User ///////////////// -->
+        <article id="delete_user">
+      <h2>Delete the auth user</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /users/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+</section>
+
+  <!-- ////////// Profiles ///////// -->
+  <section id="profiles">
+    <h1>Profiles API</h1>
+
+  <!--- //////////// Get Profile ///////////////// -->
+    <article id="get_profile">
+      <h2>Get users profile</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /profiles/:id</pre></code>
+
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "profile": {
+        "id": 14,
+        "forename": "wuppi123",
+        "surname": surname,
+        "city": city,
+        "about": about,
+        "avatar_url": avatar_url,
+        "user_id": 17
     }
 }
         </code>
       </pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-    <hr/>
-
-    <article id="update_user_profile">
-      <h3>Update authenticated users profile</h3>
-        <code>PUT /user/profile</code>
-        <pre><strong>Input</strong>
-          <code>
+<!--- //////////// Update Profile ///////////////// -->
+    <article id="update_profile">
+      <h2>Update users profile</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>PUT /profiles/:id</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"profile":{ :params }}
   <strong>forename</strong> - optional string
   <strong>surname</strong> - optional string
   <strong>city</strong> - optional string
   <strong>about</strong> - optional string
           </code>
         </pre>
-        <pre><strong>Response</strong>
-          <p>Returns the changed user</p>
-        <code class="language-javascript">
-  Status 200
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
 {
-    "auth_user": {
-        "username": "bob",
-        "email": "bob@testme.com",
-        "projects": [{
-            "id": 1,
-            "due_date": null,
-            "title": "Testfertsch"
-        }, {
-            "id": 2,
-            "due_date": "2012-11-01T00:00:00+01:00",
-            "title": "Start learning ember.js"
-        }, {
-            "id": 5,
-            "due_date": "2012-12-24T00:00:00+01:00",
-            "title": "johnnys test"
-        }],
-        "profile": {
-            "forename": "Bob",
-            "surname": "Maria",
-            "city": "Buxdehude",
-            "about": "Der Titel dieses Artikels ist mehrdeutig",
-            "avatar_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/B.o.B_2.jpg/220px-B.o.B_2.jpg"
-        },
-        "contacts": [{
-            "username": "luigi",
-            "email": "luigi@testx.de"
-        }]
-    }
+  "profile": {
+      "id": 14,
+      "forename": "wuppi123",
+      "surname": surname,
+      "city": city,
+      "about": about,
+      "avatar_url": avatar_url,
+      "user_id": 17
+  }
 }
         </code>
       </pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
-    <hr/>
-
-    <article id="delete_user">
-      <h3>Delete the authenticated user</h3>
-        <code>DELETE /user</code>
-        <pre><strong>Response</strong>
-        <code class="language-javascript">
-  Status 204 NO CONTENT
-        </code>
-      </pre>
-    </article>
-
   </section>
 
-    <hr/>
+  <!-- ////////// Contact ///////// -->
+  <section id="contacts">
+    <h1>Contacts API (!! in progress !!)</h1>
+
+<!-- ////////// Get Contact ///////// -->
+    <article id="get_contact">
+        <h2>Get contact</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /contacts/:id</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "contact":
+    {
+        "id": 3,
+        "user_id": 2,
+        "contact_id": 3
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!-- ////////// Create Contact ///////// -->
+    <article id="create_contact">
+        <h2>Create contact</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /contacts </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"contact":{ :params }}
+  <strong>user_id</strong> - required integer
+  <strong>contact_id</strong> - required integer
+          </code></pre>
+        <p><strong>Response</strong>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
+{
+    "contact":
+    {
+        "id": 3,
+        "user_id": 2,
+        "contact_id": 3
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!--- //////////// Delete Contact ///////////////// -->
+        <article id="delete_contact">
+      <h2>Delete contact</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /contacts/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+</section>
+
+
+
+
+<!-- ////////// Projects ///////// -->
   <section id="projects">
     <h1>Projects API</h1>
-    <hr/>
 
-    <article id="get_projects">
-        <h3>Get users projects</h3>
-        <code>GET /user/projects OR /projects</code>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-{
-    "projects": [{
-        "id": 1,
-        "due_date": null,
-        "title": "Testfertsch"
-    }, {
-        "id": 2,
-        "due_date": "2012-11-01T00:00:00+01:00",
-        "title": "Start learning ember.js"
-    }, {
-        "id": 5,
-        "due_date": "2012-12-24T00:00:00+01:00",
-        "title": "johnnys test"
-    }]
-}
-          </code>
-        </pre>
-    </article>
-    <hr/>
-
+<!-- ////////// Get Project ///////// -->
     <article id="get_project">
-        <h3>Get single project</h3>
-        <code>GET /projects/:id</code>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  {
-    "project": {
-        "id": 1,
-        "desc": "",
-        "due_date": null,
-        "title": "Testfertsch",
-        "contributors": [{
-            "username": "luigi",
-            "email": "luigi@testx.de"
-        }],
-        "tasks": [{
-            "id": 2,
-            "due_date": "2012-12-12T00:00:00+01:00",
-            "title": "New UI concept"
-        }, {
-            "id": 3,
-            "due_date": null,
-            "title": "Do it!"
-        }]
-    }
-}
-          </code>
-        </pre>
+        <h2>Get single project</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /projects/:id</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+  "project": {
+      "id": 7,
+      "desc": "Bobs new project",
+      "due_date": null,
+      "title": "Test 2",
+      "owner_id": 2,
+      "project_coworker_ids": [],
+      "task_ids": [3]
+  }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-        <hr/>
-
+<!-- ////////// Create Project ///////// -->
     <article id="create_project">
-        <h3>Create new project</h3>
-        <code>POST /user/projects OR /projects</code>
-        <pre><strong>Input</strong>
-          <code>
+        <h2>Create new project</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /projects </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"project":{ :params }}
   <strong>title</strong> - required string
-  <strong>desc</strong> - optional string
-  <strong>due_date</strong> - optional string
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 201 OK
+  <strong>desc</strong> - optional integer
+  <strong>due_date</strong> - optional integer
+          </code></pre>
+        <p><strong>Response</strong>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
 {
     "project": {
         "id": 6,
@@ -385,193 +406,266 @@
 }
           </code>
         </pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-        <hr/>
+<!-- /////////// Update Project //////////// -->
 
     <article id="update_project">
-        <h3>Update project</h3>
-        <code>PUT /projects/:id</code>
-        <pre><strong>Input</strong>
-          <code>
-  <strong>:id</strong> - required project id
-  <strong>title</strong> - optional string
-  <strong>desc</strong> - optional string
-  <strong>due_date</strong> - optional string
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
+      <h2>Update project</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>PUT /projects/:id</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"project":{ :params }}
+  <strong>title</strong> - required string
+  <strong>desc</strong> - optional integer
+  <strong>due_date</strong> - optional integer
+          </code></pre>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
 {
     "project": {
         "id": 6,
-        "desc": "My new homepage should be very pretty",
+        "desc": My homepage should be pretty,
         "due_date": null,
         "title": "My new homepage",
         "contributors": [],
         "tasks": []
     }
 }
-          </code>
-        </pre>
+        </code>
+      </pre>
     </article>
 
-    <hr/>
-
-    <article id="delete_project">
-        <h3>Delete project</h3>
-        <code>DELETE /projects/:id</code>
-        <pre><strong>Input</strong>
-          <code>
-  <strong>:id</strong> - required project id
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  {
-    "message":"Project deleted."
-  }
-          </code>
-        </pre>
+<!--- //////////// Delete Project ///////////////// -->
+        <article id="delete_project">
+      <h2>Delete a project</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /projects/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-  </section>
+</section>
 
 
- <hr/>
-  <section id="tasks">
-    <h1>Tasks API - COMING SOON</h1>
-    <hr/>
 
-    <article id="get_tasks">
-        <h3>Get project tasks</h3>
-        <code>GET /projects/:id/tasks</code>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  [
-    {
-      "id":7,
-      "title":"Testfertsch",
-      "desc":"testdescr",
-      "due_date":null
-    },
-    {
-      "id":5,
-      "title":"Test from post",
-      "desc":"Test from put",
-      "due_date":"2012-12-12T00:00:00+01:00"
+  <!-- ////////// Project Coworkers ///////// -->
+  <section id="project-coworkers">
+    <h1>Project coworkers API</h1>
+
+<!-- ////////// Get Project Coworker ///////// -->
+    <article id="get_project_coworker">
+        <h2>Get single project coworker</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /project_coworkers/:id</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "project_coworker": {
+        "id": 13,
+        "user_id": 1,
+        "project_id": 7,
+        "permission": 2
     }
-  ]
-          </code>
-        </pre>
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
-    <hr/>
 
+<!-- ////////// Create Project Coworker ///////// -->
+    <article id="create_project_coworker">
+        <h2>Create project coworker</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /project_coworkers </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"project_coworker":{ :params }}
+  <strong>user_id</strong> - required string
+  <strong>project_id</strong> - required integer
+  <strong>permission</strong> - required integer
+          </code></pre>
+        <p><strong>Response</strong>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
+{
+    "project_coworker": {
+        "id": 16,
+        "user_id": 2,
+        "project_id": 7,
+        "permission": 2
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!-- /////////// Update Project Coworker //////////// -->
+
+    <article id="update_project_coworker">
+      <h2>Update project coworker</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>PUT /project_coworkers/:id</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"project_coworker":{ :params }}
+  <strong>user_id</strong> - required string
+  <strong>project_id</strong> - required integer
+  <strong>permission</strong> - required integer
+          </code></pre>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "project_coworker": {
+        "id": 16,
+        "user_id": 2,
+        "project_id": 7,
+        "permission": 1
+    }
+}</code></pre>
+    </article>
+
+<!--- //////////// Delete Project Coworker ///////////////// -->
+        <article id="delete_project_coworkerk">
+      <h2>Delete a project coworker</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /project_coworkers/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+</section>
+
+
+
+
+  <!-- ////////// Tasks ///////// -->
+  <section id="tasks">
+    <h1>Tasks API</h1>
+
+<!-- ////////// Get Task ///////// -->
     <article id="get_task">
-        <h3>Get single task of project</h3>
-        <code>GET /projects/:id/tasks/:id</code>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  {
-    "id":2,
-    "title":"Testfertsch",
-    "desc":"testdescr",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[{
-        "username":"bob"
-      }],
-    "updated_at":"2012-10-26T12:04:50+02:00",
-    "owner":"luigi"
-  }
-          </code>
-        </pre>
+        <h2>Get single task</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /tasks/:id</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "task": {
+        "id": 3,
+        "due_date": null,
+        "title": "Is that all?",
+        "desc": null,
+        "project_id": 7,
+        "completed": false,
+        "completed_at": null,
+        "completed_by": null,
+        "estimated_hours": null,
+        "worked_hours": null,
+        "comment_ids": [2],
+        "creator_id": 2,
+        "worker_id": 3
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-        <hr/>
-
+<!-- ////////// Create Task ///////// -->
     <article id="create_task">
-        <h3>Create new taks</h3>
-        <code>POST /projects/:id/tasks</code>
-        <pre><strong>Input</strong>
-          <code>
+        <h2>Create new task</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /tasks </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"task":{ :params }}
   <strong>title</strong> - required string
-  <strong>desc</strong> - optional string
-  <strong>due_date</strong> - optional string
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 201 OK
-  {
-    "id":3,
-    "title":"Testtitle 2",
-    "desc":"Description",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[],
-    "updated_at":"2012-11-07T12:28:24+01:00",
-    "owner":"bob"
-  }
-          </code>
-        </pre>
+  <strong>project_id</strong> - required integer
+  <strong>worker_id</strong> - optional integer
+  <strong>desc</strong> - optional integer
+  <strong>due_date</strong> - optional integer
+          </code></pre>
+        <p><strong>Response</strong>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
+{
+    "task": {
+        "id": 13,
+        "due_date": null,
+        "title": "wuppi123",
+        "desc": null,
+        "project_id": 7,
+        "completed": false,
+        "completed_at": null,
+        "completed_by": null,
+        "estimated_hours": null,
+        "worked_hours": null,
+        "comment_ids": [],
+        "creator_id": 2,
+        "worker_id": null
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-        <hr/>
+<!-- /////////// Update Task //////////// -->
 
     <article id="update_task">
-        <h3>Update task</h3>
-        <code>PUT /projects/:id/tasks/:id</code>
-        <pre><strong>Input</strong>
-          <code>
-  <strong>:id</strong> - required project id
-  <strong>title</strong> - optional string
-  <strong>desc</strong> - optional string
-  <strong>due_date</strong> - optional string
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  {
-    "id":3,
-    "title":"Changed Title",
-    "desc":"Bobs new project",
-    "due_date":"2012-12-01T00:00:00+01:00",
-    "coworkers":[],
-    "updated_at":"2012-11-07T12:37:39+01:00",
-    "owner":"bob"
-  }
-          </code>
-        </pre>
+      <h2>Update task</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>PUT /tasks/:id</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"task":{ :params }}
+  <strong>title</strong> - required string
+  <strong>project_id</strong> - optional integer
+  <strong>worker_id</strong> - optional integer
+  <strong>desc</strong> - optional integer
+  <strong>due_date</strong> - optional integer
+          </code></pre>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "task": {
+        "id": 13,
+        "due_date": null,
+        "title": "wuppi hin wuppi her",
+        "desc": null,
+        "project_id": 7,
+        "completed": false,
+        "completed_at": null,
+        "completed_by": null,
+        "estimated_hours": null,
+        "worked_hours": null,
+        "comment_ids": [],
+        "creator_id": 2,
+        "worker_id": 1
+    }
+}
+        </code>
+      </pre>
     </article>
 
-    <hr/>
-
-    <article id="delete_task">
-        <h3>Delete task</h3>
-        <code>DELETE /projects/:id/tasks/:id</code>
-        <pre><strong>Input</strong>
-          <code>
-  <strong>:id</strong> - required task id
-          </code>
-        </pre>
-        <pre><strong>Response</strong>
-          <code class="language-javascript">
-  Status 200 OK
-  {
-    "message":"Task deleted."
-  }
-          </code>
-        </pre>
+<!--- //////////// Delete Task ///////////////// -->
+        <article id="delete_task">
+      <h2>Delete a task</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /tasks/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
     </article>
 
-    <hr/>
-  </section>
+</section>
 </div>
-
 
 </body>
 </html>
