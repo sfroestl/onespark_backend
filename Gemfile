@@ -48,6 +48,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem "json_spec", "~> 1.0.3"
+	gem 'shoulda-matchers' # to test validations in Models
 end
 
 group :production do
