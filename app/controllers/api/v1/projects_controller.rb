@@ -51,6 +51,7 @@ class Api::V1::ProjectsController < Api::V1::ApiController
   end
 
   def update
+    params[:project].delete(:owner_id)
     if @project.update_only_changed_attributes(params[:project])
       render json: @project, status: :ok
     else

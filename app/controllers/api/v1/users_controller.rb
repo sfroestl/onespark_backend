@@ -37,7 +37,8 @@ class Api::V1::UsersController < Api::V1::ApiController
     render json: @auth_user, :serializer => AuthUserSerializer
   end
 
-  def update_auth_user
+  def update
+    params[:user].delete(:profile_id)
     if @auth_user.update_only_changed_attributes(params[:user])
       render json: @auth_user, :serializer => AuthUserSerializer, status: :ok
     else

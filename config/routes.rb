@@ -5,7 +5,7 @@ Onespark::Application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     # scope module: :v1 do
     namespace :v1 do
-      resources :users, only: [:create, :show]
+      resources :users, only: [:create, :show, :update]
       resources :projects, only: [:index, :show, :create, :update, :destroy]
       resources :tasks, only: [:index, :show, :create, :update, :destroy]
       resources :profiles, only: [:show, :update]
