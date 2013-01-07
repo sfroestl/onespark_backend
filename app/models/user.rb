@@ -45,6 +45,15 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, :allow_blank => true,
                        :on => :update
 
+  def outContacts
+    self.friendships
+  end
+
+
+  def inContacts
+    Friendship.where(friend_id: self.id)
+  end
+
   # overwrite method to_params
   def to_param
     username
