@@ -39,6 +39,11 @@ FactoryGirl.define do
     creator
   end
 
+  factory :time_session do
+    task
+    user
+  end
+
 
   factory :profile do
     sequence(:forename) { |n| "Vorname #{n}" }

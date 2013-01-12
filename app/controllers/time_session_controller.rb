@@ -1,0 +1,2 @@
+class TimeSessionController < ApplicationController
+end

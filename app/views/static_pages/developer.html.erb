@@ -77,10 +77,23 @@
     <li><a href="#tasks">Tasks API</a>
       <ul>
         <li><a href="#get_tasks">Get project tasks</a></li>
+        <li><a href="#get_tasks_ids">Get tasks by ids</a></li>
         <li><a href="#get_task">Get single task of project</a></li>
         <li><a href="#create_task">Create new task for project</a></li>
         <li><a href="#update_task">Update task</a></li>
         <li><a href="#delete_task">Delete task</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#ts">TimeSessions API</a>
+      <ul>
+        <li><a href="#get_ts">Get singe TimeSession</a></li>
+        <li><a href="#get_ts_ids">Get TimeSessions by ids</a></li>
+        <li><a href="#get_ts_task">Get all TimeSessions by Task</a></li>
+        <li><a href="#get_ts_user">Get all TimeSessions by User</a></li>
+        <li><a href="#create_ts">Create new TimeSession for Task</a></li>
+        <li><a href="#update_ts">Update TimeSession</a></li>
+        <li><a href="#delete_ts">Delete TimeSession</a></li>
       </ul>
     </li>
 
@@ -577,6 +590,49 @@
 <a href="#top">&uarr; Navigation</a>
     </article>
 
+
+  <!-- ////////// Get Tasks by ids ///////// -->
+  <article id="get_tasks_ids">
+      <h2>Get Tasks by ids</h2>
+      <p><strong>Request</strong></p>
+      <code><pre>GET /tasks?ids=:id1,:id3 </pre></code>
+      <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "tasks": [{
+        "id": 1,
+        "due_date": null,
+        "title": "new title yeah",
+        "desc": "",
+        "project_id": 5,
+        "completed": false,
+        "completed_at": null,
+        "completed_by": null,
+        "estimated_hours": null,
+        "worked_hours": null,
+        "comment_ids": [1],
+        "creator_id": 2,
+        "worker_id": 2
+    }, {
+        "id": 3,
+        "due_date": null,
+        "title": "Is that all?",
+        "desc": null,
+        "project_id": 7,
+        "completed": false,
+        "completed_at": null,
+        "completed_by": null,
+        "estimated_hours": null,
+        "worked_hours": null,
+        "comment_ids": [2],
+        "creator_id": 2,
+        "worker_id": 3
+    }]
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
 <!-- ////////// Create Task ///////// -->
     <article id="create_task">
         <h2>Create new task</h2>
@@ -665,6 +721,176 @@
     </article>
 
 </section>
+
+  <!-- ////////// TimeSessions ///////// -->
+  <section id="ts">
+    <h1>TimeSessions API</h1>
+
+<!-- ////////// Get single TimeSessions ///////// -->
+    <article id="get_ts">
+        <h2>Get single TimeSessions</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /time_sessions/:id</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "time_session": {
+        "id": 1,
+        "start": "2013-01-12T11:11:44+01:00",
+        "end": "2013-01-12T14:21:45+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!-- ////////// Get TimeSessions by ids ///////// -->
+  <article id="get_ts_ids">
+      <h2>Get TimeSessions by id</h2>
+      <p><strong>Request</strong></p>
+      <code><pre>GET /time_sessions?ids=:id1,id2</pre></code>
+      <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "time_sessions": [{
+        "id": 1,
+        "start": "2013-01-12T11:11:44+01:00",
+        "end": "2013-01-12T14:21:45+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }, {
+        "id": 2,
+        "start": "2013-01-12T14:33:00+01:00",
+        "end": "2013-01-12T15:00:00+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }]
+}</code></pre>
+  <a href="#top">&uarr; Navigation</a>
+  </article>
+
+<!-- ////////// Get TimeSessions of task ///////// -->
+  <article id="get_ts_task">
+      <h2>Get all TimeSessions by Task</h2>
+      <p><strong>Request</strong></p>
+      <code><pre>GET /time_sessions?task_id=:task_id</pre></code>
+      <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "time_sessions": [{
+        "id": 1,
+        "start": "2013-01-12T11:11:44+01:00",
+        "end": "2013-01-12T14:21:45+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }, {
+        "id": 2,
+        "start": "2013-01-12T14:33:00+01:00",
+        "end": "2013-01-12T15:00:00+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }]
+}</code></pre>
+  <a href="#top">&uarr; Navigation</a>
+  </article>
+
+  <!-- ////////// Get TimeSessions of user ///////// -->
+  <article id="get_ts_user">
+      <h2>Get all TimeSessions by User</h2>
+      <p><strong>Request</strong></p>
+      <code><pre>GET /time_sessions</pre></code>
+      <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "time_sessions": [{
+        "id": 1,
+        "start": "2013-01-12T11:11:44+01:00",
+        "end": "2013-01-12T14:21:45+01:00",
+        "task_id": 4,
+        "user_id": 2
+    }, {
+        "id": 5,
+        "start": "2013-01-12T14:33:00+01:00",
+        "end": "2013-01-12T15:00:00+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }]
+}</code></pre>
+  <a href="#top">&uarr; Navigation</a>
+  </article>
+
+<!-- ////////// Create TimeSession ///////// -->
+    <article id="create_ts">
+        <h2>Create new TimeSessions for task</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>POST /time_sessions </pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"time_session":{ :params }}
+  <strong>task_id</strong> - required Integer
+  <strong>start</strong> - required DateTime
+  <strong>end</strong> - optional DateTime
+          </code></pre>
+        <p><strong>Response</strong>
+        <pre class="headers">Status 201 CREATED</pre>
+    <pre><code class="language-javascript">
+{
+    "time_session": {
+        "id": 7,
+        "start": "2001-01-13T12:00:00+01:00",
+        "end": null,
+        "task_id": 1,
+        "user_id": 2
+    }
+}</code></pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+<!-- /////////// Update TimeSession //////////// -->
+
+    <article id="update_ts">
+      <h2>Update TimeSession</h2>
+        <p><strong>Request</strong></p>
+        <code><pre>PUT /time_session/:id</pre></code>
+        <p><strong>Parameter</strong></p>
+          <pre><code>
+  <strong>json-wrapper:</strong>{"time_session":{ :params }}
+  <strong>end</strong> - optional DateTime
+          </code></pre>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+{
+    "time_session": {
+        "id": 7,
+        "start": "2001-01-13T12:00:00+01:00",
+        "end": "2001-01-13T20:00:00+01:00",
+        "task_id": 1,
+        "user_id": 2
+    }
+}</code>
+      </pre>
+    </article>
+
+<!--- //////////// Delete TimeSession ///////////////// -->
+        <article id="delete_ts">
+      <h2>Delete TimeSession</h2>
+      <p><strong>Request</strong></p>
+        <code><pre>DELETE /time_session/:id</pre></code>
+        <p><strong>Response</strong>
+        <pre class="headers no-response">Status 204 NO CONTENT</pre>
+      </pre>
+<a href="#top">&uarr; Navigation</a>
+    </article>
+
+</section>
+
+
 </div>
 
 </body>

@@ -17,6 +17,8 @@ class Task < ActiveRecord::Base
 	belongs_to :creator, :class_name => 'User', primary_key: 'id', :foreign_key => 'creator_id'
 
 	has_many :comments, :as => :commentable
+  has_many :time_sessions
+
 	validates :project_id, presence: true
 	validates :creator_id, presence: true
 	validates :title, presence: true

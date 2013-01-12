@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :requested_friends, through: :friendships, source: :friend, conditions: "status = 'requested'"
   has_many :pending_friends, through: :friendships, source: :friend, conditions: "status = 'pending'"
 
+  # Time Sessions
+  has_many :time_sessions
+
   accepts_nested_attributes_for :profile
 
   before_save { |user| user.email = email.downcase }

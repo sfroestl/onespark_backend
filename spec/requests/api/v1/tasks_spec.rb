@@ -12,6 +12,7 @@ describe "Api::V1::Tasks" do
   before(:each) do
     @task3 = FactoryGirl.create(:task, project: project, creator: user)
   end
+
   describe "GET single task by id" do
     before do
       get "#{tasks_url}/#{task1.id}", nil, basic_auth(user.username)
@@ -58,7 +59,7 @@ describe "Api::V1::Tasks" do
 
     subject { response }
 
-    it "responds with  201" do
+    it "responds with  200" do
       status.should eql(200)
     end
 

@@ -47,7 +47,7 @@ describe "Api::V1::Users" do
     new_email = "test@with-put.com"
 
     before do
-      put "#{user_url}", { user: { email: new_email }}, basic_auth(user.username)
+      put "#{users_url}/#{user.id}", { user: { email: new_email }}, basic_auth(user.username)
     end
 
     it "should respond with 200" do

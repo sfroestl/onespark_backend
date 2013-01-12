@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204174951) do
+ActiveRecord::Schema.define(:version => 20130112124950) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -119,6 +119,15 @@ ActiveRecord::Schema.define(:version => 20121204174951) do
   add_index "tasks", ["milestone_id"], :name => "index_tasks_on_milestone_id"
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
   add_index "tasks", ["worker_id"], :name => "index_tasks_on_worker_id"
+
+  create_table "time_sessions", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tools_github_accounts", :force => true do |t|
     t.integer  "user_id"

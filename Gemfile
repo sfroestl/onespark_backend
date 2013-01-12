@@ -7,6 +7,7 @@ gem 'therubyracer', :platform => :ruby
 gem 'populator'
 gem 'faker'
 gem 'rest-client', '~> 1.6.7'
+gem 'validates_timeliness', '~> 3.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jquery-rails'

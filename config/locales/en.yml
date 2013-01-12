@@ -10,3 +10,12 @@ en:
             desc: "Description"
         project:
             desc: "Description"
+      errors:
+        models:
+          time_session:
+            attributes:
+              start:
+                invalid_datetime: "Invalid datetime format"
+              end:
+                invalid_datetime: "Invalid datetime format"
+                on_or_after: "End time must be on or after start time"
