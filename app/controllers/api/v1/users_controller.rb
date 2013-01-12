@@ -20,6 +20,19 @@ class Api::V1::UsersController < Api::V1::ApiController
     render json: @user
   end
 
+  def index
+    if(params[:username])
+      @user = User.find_by_username(params[:username])
+    elsif(params[:email])
+      @user = User.find_by_email(params[:email])
+    end
+    if @user
+      render json: @user
+    else
+      render json: { error: "no such user found" }, :status => :not_found
+    end
+  end
+
   # Creates a new user and returns it
   # In case of error, returns 422 error details
   def create

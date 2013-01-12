@@ -11,6 +11,14 @@ class UserSerializer < ActiveModel::Serializer
   has_many :inContacts, :embed => :ids
 
   # Scope for authorized properties
+  def include_outContacts?
+    scope == object
+  end
+
+  def include_inContacts?
+    scope == object
+  end
+
   def include_projects?
     scope == object
   end
