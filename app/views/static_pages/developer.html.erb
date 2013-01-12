@@ -54,6 +54,7 @@
     <li><a href="#contacts">Contacts API</a>
       <ul>
         <li><a href="#get_contact">Get contact</a></li>
+        <li><a href="#get_contacts_ids">Get Contacts By Ids</a></li>
         <li><a href="#create_contact">Create contact</a></li>
         <li><a href="#delete_contact">Delete contact</a></li>
       </ul>
@@ -108,27 +109,29 @@
 
   <!-- ////////// General ///////// -->
   <section id="general">
-    <h1>General</h1>
+    <h2>General</h2>
 
     <article id="uri">
 
-        <h2>URI API v1</h2>
+        <h3>URI API v1</h3>
         <pre><code>http://api.onespark.de/api/v1</code></pre>
     </article>
 
     <article id="basic_auth">
-        <h2>Basic Authentification </h2>
+        <h3>Basic Authentification </h3>
         <pre><code>HEADER "Authorization: Basic username:password (base64 encoded)"</code></pre>
     </article>
   </section>
 
   <!-- ////////// Users ///////// -->
   <section id="users">
-    <h1>Users API</h1>
+    <h2>Users API</h2>
+
+<a href="#top">&uarr; Top</a>
 
   <!-- ////////// Get User ///////// -->
       <article id="get_user">
-        <h2>Get a user</h2>
+        <h3>Get a user</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /users/:username</code></pre>
         <p><strong>Response</strong></p>
@@ -143,12 +146,11 @@
     "profile_id":1,
   }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
     </article>
 
   <!-- ////////// Get Auth User ///////// -->
     <article id="get_auth_user">
-        <h2>Get the auth user</h2>
+        <h3>Get the auth user</h3>
         <p>Returns the auth user based on the auth credentials</p>
         <p><strong>Request</strong></p>
         <code><pre>GET /user || Get /users/:your_id</pre></code>
@@ -166,12 +168,11 @@
     "owned_project_ids":[76, 6, 61, 82, 92, 123, 120, 119, 78, 85],"collaborated_project_ids":[124,8],"project_coworker_ids":[55, 7],"contact_ids":[4, 9]
   }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
     </article>
 
 <!--- //////////// Create User ///////////////// -->
     <article id="create_user">
-        <h2>Create a User</h2>
+        <h3>Create a User</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /users </pre></code>
         <p><strong>Parameter</strong></p>
@@ -195,13 +196,12 @@
     }
 }
         </code></pre>
-<a href="#top">&uarr; Navigation</a>
     </article>
 
 
 <!--- //////////// Update User ///////////////// -->
     <article id="update_user">
-      <h2>Update the auth user</h2>
+      <h3>Update the auth user</h3>
       <p><strong>Request</strong></p>
         <code><pre>PUT /user</pre></code>
         <p><strong>Parameter</strong></p>
@@ -228,24 +228,24 @@
 
 <!--- //////////// Delete User ///////////////// -->
         <article id="delete_user">
-      <h2>Delete the auth user</h2>
+      <h3>Delete the auth user</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /users/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>
 
   <!-- ////////// Profiles ///////// -->
   <section id="profiles">
-    <h1>Profiles API</h1>
-
+    <h2>Profiles API</h2>
+<a href="#top">&uarr; Top</a>
   <!--- //////////// Get Profile ///////////////// -->
     <article id="get_profile">
-      <h2>Get users profile</h2>
+      <h3>Get users profile</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /profiles/:id</pre></code>
 
@@ -265,12 +265,12 @@
 }
         </code>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!--- //////////// Update Profile ///////////////// -->
     <article id="update_profile">
-      <h2>Update users profile</h2>
+      <h3>Update users profile</h3>
         <p><strong>Request</strong></p>
         <code><pre>PUT /profiles/:id</pre></code>
         <p><strong>Parameter</strong></p>
@@ -298,17 +298,18 @@
 }
         </code>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
   </section>
 
   <!-- ////////// Contact ///////// -->
   <section id="contacts">
-    <h1>Contacts API (!! in progress !!)</h1>
+    <h2>Contacts API</h2>
+<a href="#top">&uarr; Top</a>
 
 <!-- ////////// Get Contact ///////// -->
     <article id="get_contact">
-        <h2>Get contact</h2>
+        <h3>Get Contact</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /contacts/:id</pre></code>
         <p><strong>Response</strong></p>
@@ -320,20 +321,44 @@
         "id": 3,
         "user_id": 2,
         "contact_id": 3
+        "status": {"pending" | "requested" | "accepted"}
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
+    </article>
+
+    <!-- ////////// Get Contact by ID///////// -->
+    <article id="get_contacts_ids">
+        <h3>Get Contacts By Ids</h3>
+        <p><strong>Request</strong></p>
+        <code><pre>GET /contacts?:ids=:id1,id2</pre></code>
+        <p><strong>Response</strong></p>
+  <pre class="headers">Status 200 OK</pre>
+  <pre><code>
+    {
+    "contacts": [{
+        "id": 1,
+        "user_id": 2,
+        "contact_id": 1,
+        "status": {"pending" | "requested" | "accepted"}
+    }, {
+        "id": 2,
+        "user_id": 2,
+        "contact_id": 3,
+        "status": {"pending" | "requested" | "accepted"}
+    }]
+}</code></pre>
+
     </article>
 
 <!-- ////////// Create Contact ///////// -->
     <article id="create_contact">
-        <h2>Create contact</h2>
+        <h3>Create Contact</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /contacts </pre></code>
         <p><strong>Parameter</strong></p>
           <pre><code>
   <strong>json-wrapper:</strong>{"contact":{ :params }}
-  <strong>user_id</strong> - required integer
   <strong>contact_id</strong> - required integer
           </code></pre>
         <p><strong>Response</strong>
@@ -345,20 +370,21 @@
         "id": 3,
         "user_id": 2,
         "contact_id": 3
+        "status": {"pending" | "requested" | "accepted"}
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!--- //////////// Delete Contact ///////////////// -->
         <article id="delete_contact">
-      <h2>Delete contact</h2>
+      <h3>Delete Contact</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /contacts/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>
@@ -368,11 +394,12 @@
 
 <!-- ////////// Projects ///////// -->
   <section id="projects">
-    <h1>Projects API</h1>
+    <h2>Projects API</h2>
+<a href="#top">&uarr; Top</a>
 
 <!-- ////////// Get Project ///////// -->
     <article id="get_project">
-        <h2>Get single project</h2>
+        <h3>Get single project</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /projects/:id</pre></code>
         <p><strong>Response</strong></p>
@@ -389,12 +416,12 @@
       "task_ids": [3]
   }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- ////////// Create Project ///////// -->
     <article id="create_project">
-        <h2>Create new project</h2>
+        <h3>Create new project</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /projects </pre></code>
         <p><strong>Parameter</strong></p>
@@ -419,13 +446,13 @@
 }
           </code>
         </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- /////////// Update Project //////////// -->
 
     <article id="update_project">
-      <h2>Update project</h2>
+      <h3>Update project</h3>
         <p><strong>Request</strong></p>
         <code><pre>PUT /projects/:id</pre></code>
         <p><strong>Parameter</strong></p>
@@ -454,13 +481,13 @@
 
 <!--- //////////// Delete Project ///////////////// -->
         <article id="delete_project">
-      <h2>Delete a project</h2>
+      <h3>Delete a project</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /projects/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>
@@ -469,11 +496,12 @@
 
   <!-- ////////// Project Coworkers ///////// -->
   <section id="project-coworkers">
-    <h1>Project coworkers API</h1>
+    <h2>Project coworkers API</h2>
+<a href="#top">&uarr; Top</a>
 
 <!-- ////////// Get Project Coworker ///////// -->
     <article id="get_project_coworker">
-        <h2>Get single project coworker</h2>
+        <h3>Get single project coworker</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /project_coworkers/:id</pre></code>
         <p><strong>Response</strong></p>
@@ -487,12 +515,12 @@
         "permission": 2
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- ////////// Create Project Coworker ///////// -->
     <article id="create_project_coworker">
-        <h2>Create project coworker</h2>
+        <h3>Create project coworker</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /project_coworkers </pre></code>
         <p><strong>Parameter</strong></p>
@@ -513,13 +541,13 @@
         "permission": 2
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- /////////// Update Project Coworker //////////// -->
 
     <article id="update_project_coworker">
-      <h2>Update project coworker</h2>
+      <h3>Update project coworker</h3>
         <p><strong>Request</strong></p>
         <code><pre>PUT /project_coworkers/:id</pre></code>
         <p><strong>Parameter</strong></p>
@@ -544,13 +572,13 @@
 
 <!--- //////////// Delete Project Coworker ///////////////// -->
         <article id="delete_project_coworkerk">
-      <h2>Delete a project coworker</h2>
+      <h3>Delete a project coworker</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /project_coworkers/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>
@@ -560,11 +588,12 @@
 
   <!-- ////////// Tasks ///////// -->
   <section id="tasks">
-    <h1>Tasks API</h1>
+    <h2>Tasks API</h2>
+<a href="#top">&uarr; Top</a>
 
 <!-- ////////// Get Task ///////// -->
     <article id="get_task">
-        <h2>Get single task</h2>
+        <h3>Get single task</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /tasks/:id</pre></code>
         <p><strong>Response</strong></p>
@@ -587,13 +616,13 @@
         "worker_id": 3
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 
   <!-- ////////// Get Tasks by ids ///////// -->
   <article id="get_tasks_ids">
-      <h2>Get Tasks by ids</h2>
+      <h3>Get Tasks by ids</h3>
       <p><strong>Request</strong></p>
       <code><pre>GET /tasks?ids=:id1,:id3 </pre></code>
       <p><strong>Response</strong></p>
@@ -630,12 +659,12 @@
         "worker_id": 3
     }]
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- ////////// Create Task ///////// -->
     <article id="create_task">
-        <h2>Create new task</h2>
+        <h3>Create new task</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /tasks </pre></code>
         <p><strong>Parameter</strong></p>
@@ -667,13 +696,13 @@
         "worker_id": null
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- /////////// Update Task //////////// -->
 
     <article id="update_task">
-      <h2>Update task</h2>
+      <h3>Update task</h3>
         <p><strong>Request</strong></p>
         <code><pre>PUT /tasks/:id</pre></code>
         <p><strong>Parameter</strong></p>
@@ -711,24 +740,25 @@
 
 <!--- //////////// Delete Task ///////////////// -->
         <article id="delete_task">
-      <h2>Delete a task</h2>
+      <h3>Delete a task</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /tasks/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>
 
   <!-- ////////// TimeSessions ///////// -->
   <section id="ts">
-    <h1>TimeSessions API</h1>
+    <h2>TimeSessions API</h2>
+<a href="#top">&uarr; Top</a>
 
 <!-- ////////// Get single TimeSessions ///////// -->
     <article id="get_ts">
-        <h2>Get single TimeSessions</h2>
+        <h3>Get single TimeSessions</h3>
         <p><strong>Request</strong></p>
         <code><pre>GET /time_sessions/:id</pre></code>
         <p><strong>Response</strong></p>
@@ -743,12 +773,12 @@
         "user_id": 2
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- ////////// Get TimeSessions by ids ///////// -->
   <article id="get_ts_ids">
-      <h2>Get TimeSessions by id</h2>
+      <h3>Get TimeSessions by id</h3>
       <p><strong>Request</strong></p>
       <code><pre>GET /time_sessions?ids=:id1,id2</pre></code>
       <p><strong>Response</strong></p>
@@ -769,12 +799,12 @@
         "user_id": 2
     }]
 }</code></pre>
-  <a href="#top">&uarr; Navigation</a>
+
   </article>
 
 <!-- ////////// Get TimeSessions of task ///////// -->
   <article id="get_ts_task">
-      <h2>Get all TimeSessions by Task</h2>
+      <h3>Get all TimeSessions by Task</h3>
       <p><strong>Request</strong></p>
       <code><pre>GET /time_sessions?task_id=:task_id</pre></code>
       <p><strong>Response</strong></p>
@@ -795,12 +825,12 @@
         "user_id": 2
     }]
 }</code></pre>
-  <a href="#top">&uarr; Navigation</a>
+
   </article>
 
   <!-- ////////// Get TimeSessions of user ///////// -->
   <article id="get_ts_user">
-      <h2>Get all TimeSessions by User</h2>
+      <h3>Get all TimeSessions by User</h3>
       <p><strong>Request</strong></p>
       <code><pre>GET /time_sessions</pre></code>
       <p><strong>Response</strong></p>
@@ -821,12 +851,12 @@
         "user_id": 2
     }]
 }</code></pre>
-  <a href="#top">&uarr; Navigation</a>
+
   </article>
 
 <!-- ////////// Create TimeSession ///////// -->
     <article id="create_ts">
-        <h2>Create new TimeSessions for task</h2>
+        <h3>Create new TimeSessions for task</h3>
         <p><strong>Request</strong></p>
         <code><pre>POST /time_sessions </pre></code>
         <p><strong>Parameter</strong></p>
@@ -848,13 +878,13 @@
         "user_id": 2
     }
 }</code></pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 <!-- /////////// Update TimeSession //////////// -->
 
     <article id="update_ts">
-      <h2>Update TimeSession</h2>
+      <h3>Update TimeSession</h3>
         <p><strong>Request</strong></p>
         <code><pre>PUT /time_session/:id</pre></code>
         <p><strong>Parameter</strong></p>
@@ -879,13 +909,13 @@
 
 <!--- //////////// Delete TimeSession ///////////////// -->
         <article id="delete_ts">
-      <h2>Delete TimeSession</h2>
+      <h3>Delete TimeSession</h3>
       <p><strong>Request</strong></p>
         <code><pre>DELETE /time_session/:id</pre></code>
         <p><strong>Response</strong>
         <pre class="headers no-response">Status 204 NO CONTENT</pre>
       </pre>
-<a href="#top">&uarr; Navigation</a>
+
     </article>
 
 </section>

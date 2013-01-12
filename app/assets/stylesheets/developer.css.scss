@@ -6,9 +6,12 @@ color: #393939;
 a {
   color: #04F;
   text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    text-decoration: underline;
+  }
 }
 h1 {
   font-size: 24px;
@@ -17,7 +20,13 @@ h1 {
   margin: 2em 0 1em;
 }
 h2 {
-  font-size: 20px;
+  font-size: 18px;
+  border-bottom: 1px solid #cccccc;
+  padding: .5em 0;
+  margin: 2em 0 1em;
+}
+h3 {
+  font-size: 18px;
   color: #333;
   margin: 2em auto 1em;
 }
@@ -59,4 +68,17 @@ pre.no-response {
   -moz-border-radius: 3px 3px;
   border-radius: 3px 3px;
   border-bottom: 1px solid #CACACA;
+}
+
+nav {
+  border: 1px solid #cccccc;
+  border-top:0;
+  right:0px;
+  top:0;
+  position:fixed;
+  background-color:white;
+  ul {
+    padding-right:10px;
+    list-style-type:none;
+  }
 }
