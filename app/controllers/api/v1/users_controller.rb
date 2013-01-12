@@ -17,6 +17,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   respond_to :json
 
   def show
+    # filter if user is contact
     render json: @user
   end
 
@@ -27,7 +28,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       @user = User.find_by_email(params[:email])
     end
     if @user
-      render json: @user
+      render json: [@user], :each_serializer => UserSerializer
     else
       render json: { error: "no such user found" }, :status => :not_found
     end
