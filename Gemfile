@@ -50,7 +50,7 @@ group :test do
 end
 
 group :production do
-  gem 'sqlite3', '1.3.5'
+  gem "mysql2", "~> 0.3.11"
   # gem "pg", "~> 0.13.2"
 end
 # For Thin in Deployment

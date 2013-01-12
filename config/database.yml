@@ -19,10 +19,13 @@ test: &test
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  database: onespark_production
+  host: localhost
+  username: gfradmin
+  password: schollring1234
+  port: 3306
 
 cucumber:
   <<: *test
