@@ -14,9 +14,8 @@ module ApiPermissionHelper
       Rails.logger.info "--> true"
       true
     else
-      # See ApiErrorHelper
       Rails.logger.info "--> false"
-      forbidden
+      forbidden # See ApiErrorHelper
     end
   end
 
@@ -27,9 +26,8 @@ module ApiPermissionHelper
       Rails.logger.info "--> true"
       true
     else
-      # See ApiErrorHelper
       Rails.logger.info "--> false"
-      forbidden
+      forbidden # See ApiErrorHelper
     end
   end
 
@@ -40,9 +38,8 @@ module ApiPermissionHelper
       Rails.logger.info "--> true"
       true
     else
-      # See ApiErrorHelper
       Rails.logger.info "--> false"
-      forbidden
+      forbidden # See ApiErrorHelper
     end
   end
 
@@ -53,15 +50,13 @@ module ApiPermissionHelper
       Rails.logger.info "--> true"
       true
     else
-      # See ApiErrorHelper
       Rails.logger.info "--> false"
-      forbidden
+      forbidden # See ApiErrorHelper
     end
   end
 
   def has_change_task_right?
     Rails.logger.info "--> filter has_change_task_right?"
-
     if @project.admin?(@auth_user)
       # user is admin
       Rails.logger.info "--> true (User is admin)"
@@ -71,9 +66,64 @@ module ApiPermissionHelper
       Rails.logger.info "--> true (User is writer & worker)"
       true
     else
-      # See ApiErrorHelper
       Rails.logger.info "--> false"
-      forbidden
+      forbidden("you do not have the permission to perform this action") # See ApiErrorHelper
+    end
+  end
+
+  # Validates the users view profile right
+  def has_view_profile_right?
+    Rails.logger.info "--> filter has_view_profile_right?"
+    if @profile.user.friends.include?(current_user) || @profile == @auth_user.profile
+      true
+    else
+      Rails.logger.info "--> false"
+      forbidden("you can only view your and your contacts profiles") # See ApiErrorHelper
+    end
+  end
+
+  # Validates the users update profile right
+  def has_update_profile_right?
+    Rails.logger.info "--> filter has_update_profile_right?"
+    if @profile == @auth_user.profile
+      true
+    else
+      Rails.logger.info "--> false"
+      forbidden("you can only update your own profile") # See ApiErrorHelper
+    end
+  end
+
+  # Validates the users view user right
+  def has_view_user_right?
+    Rails.logger.info "--> filter has_view_user_right?"
+    return true if @user == @auth_user
+    if @user.friends.include?(current_user)
+      true
+    else
+      Rails.logger.info "--> false"
+      forbidden("you can only view your and your contacts profiles") # See ApiErrorHelper
+    end
+  end
+
+  # Validates the users view user right
+  def has_update_user_right?
+    Rails.logger.info "--> filter has_update_user_right?"
+    if @user == current_user
+      true
+    else
+      Rails.logger.info "--> false"
+      forbidden("you can only update your own account") # See ApiErrorHelper
+    end
+  end
+
+  # Validates the users view user right
+  def has_delete_user_right?
+    Rails.logger.info "--> filter has_delete_user_right?"
+    if @user == current_user
+      true
+    else
+      Rails.logger.info "--> false"
+      forbidden("you can only update your own account") # See ApiErrorHelper
     end
   end
 end

@@ -11,13 +11,15 @@
 class Api::V1::UsersController < Api::V1::ApiController
   # basic authentification filter
   before_filter :authenticate_basic, except: [:create]
-
-  before_filter :find_user, only: [:show]
+  before_filter :find_user, only: [:show, :update]
+   # be sure to find the user before the right-filters
+  before_filter :has_view_user_right?, only: [:show]
+  before_filter :has_update_user_right?, only: [:update]
+  before_filter :has_delete_user_right?, only: [:destroy_auth_user]
 
   respond_to :json
 
   def show
-    # filter if user is contact
     render json: @user
   end
 
@@ -61,10 +63,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def destroy_auth_user
-    user = @auth_user
-    if user
-      respond_with User.destroy(user.id)
-    end
+    respond_with User.destroy(user.id)
   end
 
 

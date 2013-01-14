@@ -14,13 +14,13 @@ Onespark::Application.routes.draw do
       resources :time_sessions, only: [:index, :show, :create, :update, :destroy]
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'
-      put '/user', to: 'users#update_auth_user'
+      # put '/user', to: 'users#update_auth_user'
       delete '/user', to: 'users#destroy_auth_user'
 
       # with scope '/user' e.g. /user/projects => all projects of authenticated user)
       scope "/user" do
-        resources :projects, only: [:index]
-        put '/profile', to: 'profiles#update_with_user'
+        # resources :projects, only: [:index]
+        # put '/profile', to: 'profiles#update_with_user'
       end
 
     end

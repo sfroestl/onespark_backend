@@ -9,8 +9,8 @@
 module ApiErrorHelper
 
   # Returns the forbidden error message as json
-  def forbidden
-    render :json =>  { :error => "Not allowed!" }, :status => :unauthorized
+  def forbidden(message=nil)
+    render :json =>  { :error => message || "Not allowed!" }, :status => :unauthorized
   end
 
   # Returns RecordNotFound Exception handling

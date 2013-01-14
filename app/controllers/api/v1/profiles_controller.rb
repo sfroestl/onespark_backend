@@ -10,6 +10,10 @@
 class Api::V1::ProfilesController < Api::V1::ApiController
   # basic authentification filter
   before_filter :authenticate_basic, except: [:create]
+  before_filter :find_profile, only: [:show, :update]
+  # be sure to find the profile before the right-filters
+  before_filter :has_view_profile_right?, only: [:show]
+  before_filter :has_update_profile_right?, only: [:update]
 
   respond_to :json
 
@@ -22,8 +26,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   end
 
   def update
-    profile = Profile.find(params[:id])
-    if profile.user.id == @auth_user.id
+    if @profile.user.id == @auth_user.id
       if @auth_user.profile.update_only_changed_attributes(params[:profile])
         render json: @auth_user.profile, :serializer => ProfileSerializer, status: :ok
       else
@@ -35,7 +38,14 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   end
 
   def show
-    render json: Profile.find(params[:id])
+    render json: @profile, status: :ok
   end
+
+  private
+
+  def find_profile
+    @profile = Profile.find(params[:id])
+  end
+
 
 end
