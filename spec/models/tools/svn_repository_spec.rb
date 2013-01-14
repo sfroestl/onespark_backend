@@ -30,14 +30,14 @@ describe Tools::SvnRepository do
 	end
 
 	describe "when SVN Repo is deleted" do
-		it "should destroy SVN Repo" 
+		it "should destroy SVN Repo"
 	end
 
 	describe "when requesting SVN log" do #log
 
 		it "get an RSCM::Revisions Class back" do
 			revisions = svn_repository.log
-			revisions.should be_an_instance_of(RSCM::Revisions) 
+			revisions.should be_an_instance_of(RSCM::Revisions)
 		end
 
 		describe "with Revision number 850" do
@@ -77,7 +77,11 @@ describe Tools::SvnRepository do
 
 		describe "and svn password and username are given" do
 			it "should be valid" do
-				FactoryGirl.create(:svn_repository, svn_username: "robem",svn_password: "secret").should be_valid
+				FactoryGirl.create(:svn_repository, title: "Test Svn", url:"svn://svn.gammadata.de", svn_username: "sfr", svn_password:"sfr4dev").should be_valid
+			end
+			it "get an RSCM::Revisions Class back" do
+				revisions = svn_repository.log
+				revisions.should be_an_instance_of(RSCM::Revisions)
 			end
 		end
 
