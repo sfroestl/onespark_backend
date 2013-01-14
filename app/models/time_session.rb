@@ -9,4 +9,5 @@ class TimeSession < ActiveRecord::Base
 
   validates_date :end, :on_or_after => lambda { :start }, :allow_nil => true, :allow_blank => true
 
+  scope :uncompleted, where(:end => nil)
 end
