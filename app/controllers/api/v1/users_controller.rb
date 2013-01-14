@@ -12,8 +12,8 @@ class Api::V1::UsersController < Api::V1::ApiController
   # basic authentification filter
   before_filter :authenticate_basic, except: [:create]
   before_filter :find_user, only: [:show, :update]
-   # be sure to find the user before the right-filters
-  before_filter :has_view_user_right?, only: [:show]
+  # be sure to find the user before the right-filters
+  # before_filter :has_view_user_right?, only: [:show]
   before_filter :has_update_user_right?, only: [:update]
   # before_filter :has_delete_user_right?, only: [:destroy_auth_user] # replaced by auth_basic
 
@@ -50,7 +50,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def show_auth_user
-    render json: @auth_user, :serializer => AuthUserSerializer
+    render json: @auth_user, :serializer => AuthUserSerializer, root: :user
   end
 
   def update

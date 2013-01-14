@@ -74,7 +74,7 @@ module ApiPermissionHelper
   # Validates the users view profile right
   def has_view_profile_right?
     Rails.logger.info "--> filter has_view_profile_right?"
-    if @profile.user.friends.include?(current_user) || @profile == @auth_user.profile
+    if @profile.user.friendships.exists?(current_user) || @profile == @auth_user.profile
       true
     else
       Rails.logger.info "--> false"
@@ -97,7 +97,7 @@ module ApiPermissionHelper
   def has_view_user_right?
     Rails.logger.info "--> filter has_view_user_right?"
     return true if @user == @auth_user
-    if @user.friends.include?(current_user)
+    if @user.friendships.exists?(current_user)
       true
     else
       Rails.logger.info "--> false"

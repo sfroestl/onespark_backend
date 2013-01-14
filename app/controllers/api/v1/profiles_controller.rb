@@ -12,7 +12,7 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   before_filter :authenticate_basic, except: [:create]
   before_filter :find_profile, only: [:show, :update]
   # be sure to find the profile before the right-filters
-  before_filter :has_view_profile_right?, only: [:show]
+  # before_filter :has_view_profile_right?, only: [:show]
   before_filter :has_update_profile_right?, only: [:update]
 
   respond_to :json
