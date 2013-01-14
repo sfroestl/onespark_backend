@@ -119,11 +119,11 @@ module ApiPermissionHelper
   # Validates the users view user right
   def has_delete_user_right?
     Rails.logger.info "--> filter has_delete_user_right?"
-    if @user == current_user
+    if @user == @auth_user
       true
     else
       Rails.logger.info "--> false"
-      forbidden("you can only update your own account") # See ApiErrorHelper
+      forbidden("you can only delete your own account") # See ApiErrorHelper
     end
   end
 end

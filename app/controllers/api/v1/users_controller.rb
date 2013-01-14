@@ -11,7 +11,7 @@
 class Api::V1::UsersController < Api::V1::ApiController
   # basic authentification filter
   before_filter :authenticate_basic, except: [:create]
-  before_filter :find_user, only: [:show, :update]
+  before_filter :find_user, only: [:show, :update, :destroy_auth_user]
    # be sure to find the user before the right-filters
   before_filter :has_view_user_right?, only: [:show]
   before_filter :has_update_user_right?, only: [:update]
