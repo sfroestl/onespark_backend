@@ -56,7 +56,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   def update
     params[:user].delete(:profile_id)
     if @auth_user.update_only_changed_attributes(params[:user])
-      render json: @auth_user, :serializer => AuthUserSerializer, status: :ok
+      render json: @auth_user, :serializer => AuthUserSerializer, root: :user, status: :ok
     else
       render json: { errors: @auth_user.errors}, status: :unprocessable_entity
     end
