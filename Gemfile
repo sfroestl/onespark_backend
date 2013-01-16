@@ -22,6 +22,11 @@ gem 'rack-cors', :require => 'rack/cors'
 # Server and production
   gem 'thin','1.5.0'
 
+# SVN
+	gem 'rscm'
+	gem 'ftools' # required by rscm
+	gem 'rails_uri_validator', '~> 0.1.2'
+
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'
@@ -48,6 +53,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem "json_spec", "~> 1.0.3"
+	gem 'shoulda-matchers' # to test validations in Models
 end
 
 group :production do

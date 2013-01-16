@@ -151,6 +151,18 @@ ActiveRecord::Schema.define(:version => 20130112124950) do
   add_index "tools_github_repositories", ["project_id"], :name => "index_tools_github_repositories_on_project_id"
   add_index "tools_github_repositories", ["user_id"], :name => "index_tools_github_repositories_on_user_id"
 
+  create_table "tools_svn_repositories", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "svn_username"
+    t.string   "svn_password"
+    t.integer  "project_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "tools_svn_repositories", ["project_id"], :name => "index_tools_svn_repositories_on_project_id"
+
   create_table "topics", :force => true do |t|
     t.integer  "creator_id"
     t.integer  "project_id"

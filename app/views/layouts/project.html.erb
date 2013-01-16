@@ -73,6 +73,10 @@
 					project_github_path(@project), disable_with: disabler_gh
 				%>
 
+			<%= link_to  content_tag('div', 'SVN', class: 'tool documents'), 
+					project_svn_repositories_path(@project)
+				%>
+
 		</div>
 	</div>
 

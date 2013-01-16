@@ -30,7 +30,6 @@ FactoryGirl.define do
     creator
   end
 
-
   factory :tasklist do
     title   "Milestone 1"
     desc    "example milestone description here"
@@ -44,11 +43,23 @@ FactoryGirl.define do
     user
   end
 
-
   factory :profile do
     sequence(:forename) { |n| "Vorname #{n}" }
     sequence(:surname) { |n| "Namchname #{n}" }
     user
   end
+
+	factory :svn_repository, :class => Tools::SvnRepository do
+		title "Debian; Debburn"
+		url		"svn://svn.debian.org/debburn"
+	end
+
+  factory :svn_pw_repository, :class => Tools::SvnRepository do
+    title "test"
+    url "asd"
+    svn_username "asd"
+    svn_password "asd"
+  end
+
 end
 
