@@ -31,7 +31,6 @@ gem 'rack-cors', :require => 'rack/cors'
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'
-  gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'nifty-generators'
   gem 'pry-rails'
