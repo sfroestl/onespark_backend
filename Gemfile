@@ -19,6 +19,8 @@ gem "active_model_serializers", git: "git://github.com/rails-api/active_model_se
 gem "update_only_changed_attributes", git: "git://github.com/MRudolph/update_only_changed_attributes.git"
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'bcrypt-ruby', '3.0.1'
+
 # Server and production
   gem 'thin','1.5.0'
   gem 'uberspacify'
