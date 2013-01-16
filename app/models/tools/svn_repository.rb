@@ -7,7 +7,7 @@ class Tools::SvnRepository < ActiveRecord::Base
 
 	validates :title,
 		:presence => true
-	validates :url, 
+	validates :url,
 		:presence => true,
 		:uri => { :schemes => [:svn, :http, :https] }
 
@@ -15,7 +15,7 @@ class Tools::SvnRepository < ActiveRecord::Base
 	# to		= Time.utc(...) or revision number
 	#@return RSCM::Revisions, http://rscm.rubyforge.org/
 	def log(from=Time.new.utc, to=Time.infinity)
-		
+
 		svn = RSCM::Subversion.new(self.url)
 
 		svn.username = self.svn_username if self.svn_username

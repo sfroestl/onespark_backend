@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
 
   attr_accessible :desc, :due_date, :title
 
+  belongs_to :user
+
   has_many :tasklists, :dependent => :destroy # ensures to destroy all tasklists related to project
 
   has_many :coworkers, :through => :project_coworkers, :source => :user, dependent: :destroy
@@ -20,9 +22,10 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :topics, :dependent => :destroy
   has_many :postings, :dependent => :destroy
-	has_many :svn_repositories, class_name: "Tools::SvnRepository", :dependent => :destroy
+	has_many :repositories, :dependent => :destroy
 
-  belongs_to :user
+  # remove legacy impl
+  has_many :svn_repositories, class_name: "Tools::SvnRepository", :dependent => :destroy
   has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy
 
   validates :title, presence: true
