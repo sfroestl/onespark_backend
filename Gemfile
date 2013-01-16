@@ -21,6 +21,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # Server and production
   gem 'thin','1.5.0'
+  gem 'uberspacify'
 
 # SVN
 	# gem 'rscm'
