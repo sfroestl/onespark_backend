@@ -23,7 +23,7 @@ gem 'rack-cors', :require => 'rack/cors'
   gem 'thin','1.5.0'
 
 # SVN
-	gem 'rscm'
+	# gem 'rscm'
 	gem 'ftools' # required by rscm
 	gem 'rails_uri_validator', '~> 0.1.2'
 

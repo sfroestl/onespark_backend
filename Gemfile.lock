@@ -176,7 +176,6 @@ GEM
     ref (1.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rscm (0.5.1)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -262,7 +261,6 @@ DEPENDENCIES
   rails (= 3.2.11)
   rails_uri_validator (~> 0.1.2)
   rest-client (~> 1.6.7)
-  rscm
   rspec-rails (= 2.9.0)
   sass-rails (= 3.2.4)
   shoulda-matchers
