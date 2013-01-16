@@ -12,7 +12,9 @@ Onespark::Application.routes.draw do
       resources :project_coworkers, only: [:index, :show, :create, :update, :destroy]
       resources :contacts, only: [:index, :show, :create, :update, :destroy]
       resources :time_sessions, only: [:index, :show, :create, :update, :destroy]
-      resources :repositories, only: [:index, :show, :create, :update]
+
+      # get 'repositories/:id', to: 'tools/repositories#show'
+      resources :repositories, only: [:index, :show, :create, :update], :controller => 'tools/repositories'
 
       # routes for authenticated user
       get '/user', to: 'users#show_auth_user'

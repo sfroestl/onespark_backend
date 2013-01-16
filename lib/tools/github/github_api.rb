@@ -7,8 +7,6 @@
 # Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
 # Last Edit:: 21.07.2012
 
-
-
 class GitHubApi
 
 # the required sub classes
@@ -117,9 +115,16 @@ require 'tools/github/resources/event'
   end
 
   def get(path, params={}) #:nodoc:
-    result = RestClient.get("https://api.github.com" + path,
+    Rails.logger.info "--> GitHubApi get urlpart: #{path}"
+    if (@access_token)
+      result = RestClient.get("https://api.github.com" + path,
                             {:accept => :json,
                              :authorization => "token #{@access_token}"}.merge({:params => params}))
+    else
+      result = RestClient.get("https://api.github.com" + path,
+                            {:accept => :json}.merge({:params => params}))
+    end
+
     JSON.parse(result)
   rescue RestClient::Unauthorized
     raise Unauthorized, "The access token is invalid according to GitHub"
