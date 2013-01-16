@@ -1,5 +1,5 @@
 class Tools::SvnRepositoriesController < ApplicationController
-	require 'rscm'
+	# require 'rscm'
 	layout 'project'
 
   before_filter :find_project
@@ -32,7 +32,7 @@ class Tools::SvnRepositoriesController < ApplicationController
   def destroy
 	end
 
-	private 
+	private
 
 	def find_project
 		@project = Project.find(params[:project_id])
