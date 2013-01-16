@@ -48,5 +48,13 @@ FactoryGirl.define do
 		title "Debian; Debburn"
 		url		"svn://svn.debian.org/debburn"
 	end
+
+  factory :svn_pw_repository, :class => Tools::SvnRepository do
+    title "test"
+    url "asd"
+    svn_username "asd"
+    svn_password "asd"
+  end
+
 end
 

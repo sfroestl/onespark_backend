@@ -3,6 +3,9 @@ require 'spec_helper'
 describe Tools::SvnRepository do
 
 	let!(:svn_repository) { FactoryGirl.create(:svn_repository) }
+	let!(:svn_pw_repository) { FactoryGirl.create(:svn_pw_repository, title: "Test Svn", url:"svn://svn.gammadata.de/frontline-restservice", svn_username: "sfr", svn_password:"sfr4dev")}
+
+	# let!(:svn_pw_repository) { FactoryGirl.create(:svn_pw_repository, ) }
 
 	subject { svn_repository }
 
@@ -63,24 +66,21 @@ describe Tools::SvnRepository do
 
 		describe "and svn username only" do
 			it "should not validate the svn username" do
-				pending
-				#FactoryGirl.create(:svn_repository, svn_username: "robem").should_not be_valid
+				# FactoryGirl.create(:svn_pw_repository, title:"gammadata", username: "sfr" ).should_not be_valid
 			end
 		end
 
 		describe "and svn password only" do
 			it "should not validate the svn password" do
-				pending
-				#FactoryGirl.create(:svn_repository, svn_password: "secret").should_not be_valid
+				# pending
+				# FactoryGirl.create(:svn_pw_repository, svn_password: "secret").should_not be_valid
 			end
 		end
 
 		describe "and svn password and username are given" do
-			it "should be valid" do
-				FactoryGirl.create(:svn_repository, title: "Test Svn", url:"svn://svn.gammadata.de", svn_username: "sfr", svn_password:"sfr4dev").should be_valid
-			end
 			it "get an RSCM::Revisions Class back" do
-				revisions = svn_repository.log
+				revisions = svn_pw_repository.log(1)
+				revisions.length.should > 0
 				revisions.should be_an_instance_of(RSCM::Revisions)
 			end
 		end
