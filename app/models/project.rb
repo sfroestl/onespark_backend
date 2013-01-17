@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :topics, :dependent => :destroy
   has_many :postings, :dependent => :destroy
-	has_many :repositories, :dependent => :destroy
+	has_many :repositories, class_name: "Tools::Repository", :dependent => :destroy
 
   # remove legacy impl
   has_many :svn_repositories, class_name: "Tools::SvnRepository", :dependent => :destroy

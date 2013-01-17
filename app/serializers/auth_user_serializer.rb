@@ -1,4 +1,5 @@
 class AuthUserSerializer < ActiveModel::Serializer
+  self.root('user')
   attributes :id, :username, :email
   has_one :profile
 

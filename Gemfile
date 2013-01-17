@@ -26,8 +26,8 @@ gem 'bcrypt-ruby', '3.0.1'
   gem 'uberspacify'
 
 # SVN
-	# gem 'rscm'
-	# gem 'ftools' # required by rscm
+	gem 'rscm'
+	gem 'ftools' # required by rscm
 	gem 'rails_uri_validator', '~> 0.1.2'
 
 group :development do
