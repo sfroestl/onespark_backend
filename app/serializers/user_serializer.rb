@@ -7,15 +7,15 @@ class UserSerializer < ActiveModel::Serializer
   has_many :project_permissions, :key => :collaborated_project_ids, :embed => :ids
   has_many :project_coworkers, :key => :project_coworker_ids, :embed => :ids
   #has_many :friendships, :key => :contact_ids, :embed => :ids #, :serializer => UserShortSerializer
-  has_many :outContacts, :embed => :ids
-  has_many :inContacts, :embed => :ids
+  has_many :out_contacts, :embed => :ids
+  has_many :in_contacts, :embed => :ids
 
   # Scope for authorized properties
-  def include_outContacts?
+  def include_out_contacts?
     scope == object
   end
 
-  def include_inContacts?
+  def include_in_contacts?
     scope == object
   end
 

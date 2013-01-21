@@ -48,12 +48,12 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, :allow_blank => true,
                        :on => :update
 
-  def outContacts
+  def out_contacts
     self.friendships
   end
 
 
-  def inContacts
+  def in_contacts
     Friendship.where(friend_id: self.id)
   end
 
