@@ -1,4 +1,4 @@
-<%= form_for [@project, @svn_repository], :url => project_svn_repository_path(@project) do |f| %>
+<%= form_for [@project, @repository], :url => project_svn_repository_path(@project) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <fieldset>
@@ -13,7 +13,7 @@
     <fieldset>
       <%= f.label :ssh_username,  'SSH Username' %>
       <%= f.text_field :ssh_username, placeholder:"your SSH username", :tabindex => 3 %>
-    </fieldset> 
+    </fieldset>
     <fieldset>
       <%= f.label :ssh_password,  'SSH Password' %>
       <%= f.password_field :ssh_password, :tabindex => 5 %>

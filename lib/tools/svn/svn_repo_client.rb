@@ -9,11 +9,12 @@
 class SvnRepoClient
 
   def init_with_model(repo_model)
-
+    @repo_model = repo_model
   end
 
   def get_repo_info
-
+    Rails.logger.info "--> SVNRepoClient"
+    commits = log(@repo_model.url)
   end
 
   def get_all_commits
@@ -24,4 +25,17 @@ class SvnRepoClient
 
   end
 
+  private
+
+  def log(url, from=1, to=Time.infinity)
+
+    svn = RSCM::Subversion.new(url)
+
+    svn.username ||= "sfr"
+    svn.password ||= "sfr4dev"
+
+    revisions = svn.revisions(from, {:to_identifier => to})
+    # Rails.logger.info revisions
+    revisions
+  end
 end

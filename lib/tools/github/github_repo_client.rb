@@ -8,7 +8,6 @@
 
 class GithubRepoClient
 require 'tools/github/github_api'
-  @repo_model
 
   def init_with_model(repo_model)
     @repo_model = repo_model

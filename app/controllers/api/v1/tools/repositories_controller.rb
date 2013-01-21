@@ -1,5 +1,6 @@
 class Api::V1::Tools::RepositoriesController < Api::V1::ApiController
   require 'tools/github/github_repo_client'
+  require 'tools/svn/svn_repo_client'
 
   before_filter :find_project_and_repository, only: [:show, :destroy]
   # before_filter :has_view_project_right?
@@ -12,6 +13,7 @@ class Api::V1::Tools::RepositoriesController < Api::V1::ApiController
 
   def show
     repo_info = @client.get_repo_info
+    Rails.logger.info "INFO #{repo_info}"
     render json: repo_info
   end
 
@@ -36,9 +38,9 @@ class Api::V1::Tools::RepositoriesController < Api::V1::ApiController
       when "github"
         @client = GithubRepoClient.new
         @client.init_with_model(@repo_model)
-      # when "svn"
-      #   @client = SvnRepoClient.new
-      #   @client.init_with_model(@repo_model)
+      when "svn"
+        @client = SvnRepoClient.new
+        @client.init_with_model(@repo_model)
     end
   end
 end

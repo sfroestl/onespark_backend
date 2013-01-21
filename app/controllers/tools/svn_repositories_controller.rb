@@ -17,14 +17,14 @@ class Tools::SvnRepositoriesController < ApplicationController
   # GET project/:id/tools/svn_repositories/new
   # GET project/:id/tools/svn_repositories/new.json
 	def new
-		@svn_repository = @project.svn_repositories.build
+		@svn_repository = @project.repositories.build
 	end
 
   # POST project/:id/tools/svn_repositories
   # POST project/:id/tools/svn_repositories.json
 	def create
-		@svn_repository = @project.svn_repositories.create(params[:svn_repository])
-		redirect_to project_tasklist_path(@project, @svn_repository), :flash => { :success => 'Tasklist was successfully created.' }
+		@svn_repository = @project.repositories.create(params[:svn_repository])
+		redirect_to project_tasklist_path(@project, @svn_repository), :flash => { :success => 'SVN was successfully linked.' }
 	end
 
   # DELETE project/:id/tools/svn_repositories/1
