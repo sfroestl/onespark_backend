@@ -13,8 +13,10 @@ class Api::V1::Tools::RepositoriesController < Api::V1::ApiController
 
   def show
     repo_info = @client.get_repo_info
-    Rails.logger.info "INFO #{repo_info}"
-    render json: repo_info
+    commits = @client.get_all_commits
+    Rails.logger.info "INFO"
+    repo = RepositorySerializer.new(@repo_model)
+    render json: {repo: repo, info: repo_info, commits:commits.count }
   end
 
   def create

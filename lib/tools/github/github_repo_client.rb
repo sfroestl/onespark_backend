@@ -10,21 +10,21 @@ class GithubRepoClient
 require 'tools/github/github_api'
 
   def init_with_model(repo_model)
-    @repo_model = repo_model
+    @@repo_model = repo_model
+    Rails.logger.info "--> GithubRepoClient"
+    split_parts = repo_model.url.split('/')
+    @@repo_name = split_parts[-1].split('.')[0]
+    @@owner_name = split_parts[-2]
+    Rails.logger.info "--> GithubRepoClient: repo #{@@repo_name} owner: #{@@owner_name}"
+    @@github_api = GitHubApi.new
   end
 
   def get_repo_info
-    Rails.logger.info "--> GithubRepoClient"
-    split_parts = @repo_model.url.split('/')
-    repo_name = split_parts[-1].split('.')[0]
-    owner_name = split_parts[-2]
-    Rails.logger.info "--> GithubRepoClient: repo #{repo_name} owner: #{owner_name}"
-    github_api = GitHubApi.new
-    github_api.repos.get(owner_name, repo_name)
+    @@github_api.repos.get(@@owner_name, @@repo_name)
   end
 
   def get_all_commits
-
+    @@github_api.commits.list(user: @@owner_name, repo: @@repo_name)
   end
 
   def get_commit(id)

@@ -13,16 +13,16 @@ class SvnRepoClient
   end
 
   def get_repo_info
-    Rails.logger.info "--> SVNRepoClient"
-    commits = log(@repo_model.url)
+    # Rails.logger.info "--> SVNRepoClient"
+    # commits = log(@repo_model.url)
   end
 
   def get_all_commits
-
+    commits = log(@repo_model.url)
   end
 
   def get_commit(id)
-
+    commits = log(@repo_model.url, id, id)
   end
 
   private
