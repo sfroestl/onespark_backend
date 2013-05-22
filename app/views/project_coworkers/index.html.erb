@@ -7,7 +7,7 @@
 		<h3>Coworkers</h3>
 	</div>
 
-	<div class="scroll-pane jspScrollable tools">		
+	<div class="scroll-pane jspScrollable tools">
 		<% render partial: "sidebar", locals: { active: 'index'} %>
 	</div>
 </div>
@@ -15,8 +15,8 @@
 
 
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
-<div class="content">
-	<div id = "contentHead" class="head">
+<div class="content" style="width: 965px; left: 205px; border: none;">
+	<div id = "contentHead" class="head tool_head_active">
 		<h3><a href="#add" class="tk-ff-meta-serif-web-pro">All Coworkers</a></h3>
 	</div>
 
@@ -37,7 +37,7 @@
 			<div class="seperator">Admins</div>
 			<div class="element single_content">
 			  <div class="profiles_list">
-		      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>	                 
+		      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>
 			  </div>
 			</div>
 		<% end %>
@@ -46,7 +46,7 @@
 			<div class="seperator">Coworkers with write permission</div>
 			<div class="element single_content">
 			  <div class="profiles_list">
-			    <%= render :partial => 'show_coworker', :collection => @project.writers, :as => :coworker %>	                 
+			    <%= render :partial => 'show_coworker', :collection => @project.writers, :as => :coworker %>
 			  </div>
 		</div>
 		<% end %>
@@ -55,7 +55,7 @@
 			<div class="seperator">Coworkers with read permission</div>
 			<div class="element single_content">
 				<div class="profiles_list">
-				  <%= render :partial => 'show_coworker', :collection => @project.readers, :as => :coworker %>	                 
+				  <%= render :partial => 'show_coworker', :collection => @project.readers, :as => :coworker %>
 				  </div>
 			</div>
 		<% end %>

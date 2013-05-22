@@ -13,9 +13,7 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem "active_model_serializers", git: "git://github.com/rails-api/active_model_serializers.git"
-# Changes for robin
-# gem 'thin', "1.3.1"
-# gem "eventmachine", "1.0.0.rc.1"
+
 gem "update_only_changed_attributes", git: "git://github.com/MRudolph/update_only_changed_attributes.git"
 gem 'rack-cors', :require => 'rack/cors'
 

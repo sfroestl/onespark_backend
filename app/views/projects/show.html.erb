@@ -1,7 +1,7 @@
 <%= provide(:title, @project.title) %>
 
-<div class="content">
-	<div id = "contentHead" class="head">
+<div class="content" style="width: 965px; left: 205px; border: none;">
+	<div id = "contentHead" class="head tool_head_active">
 		<h3><a href="" class="tk-ff-meta-serif-web-pro">Overview</a></h3>
 	</div>
 
@@ -13,7 +13,7 @@
 			<dl>
 				<dt>Title</dt>
 				<dd><%= @project.title %></dd>
-			</dl>			
+			</dl>
       		<% unless @project.desc.eql? "" %>
 				<dl>
 					<dt>Description</dt>
@@ -23,16 +23,16 @@
 
 			<% if @project.due_date %>
 				<dl>
-					<dt>Due</dt> 
+					<dt>Due</dt>
 					<dd><%= format_date_long(@project.due_date)%></dd>
 				</dl>
 			<% end %>
-      	
+
 				<div class="element_settings">
 					<%= link_to "Edit project", edit_project_path(@project) %>
-					<%= link_to "Delete project", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>	
-				</div>	
-		</div>	
+					<%= link_to "Delete project", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>
+				</div>
+		</div>
 				<div class="seperator">Recent activities</div>
 			<%= render :partial => 'owerview_part_coworkers', :locals => { headline: (link_to pluralize(@project.coworkers.count + 1, 'Coworker'), project_coworkers_path(@project)) } %>
 
@@ -41,12 +41,12 @@
 			<%= render :partial => 'owerview_part_postings', :locals => { headline: (link_to pluralize(@project.postings.count, 'Posting'), project_topics_path(@project)) } %>
 
 
-			<%= content_tag('div', 
-			content_tag('h1', 
+			<%= content_tag('div',
+			content_tag('h1',
 			link_to("A Dropbox account is linked", project_dropbox_path(@project), disable_with: 'loading data...')), class: "element single_content") if session[:dropbox_session] %>
 
-			<%= content_tag('div', 
-			content_tag('h1', 
+			<%= content_tag('div',
+			content_tag('h1',
 			link_to("A GitHub account is linked", project_github_path(@project), disable_with: 'loading data...')), class: "element single_content") if @project.github_repository %>
 
 </div>
